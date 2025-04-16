@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.0.0/mdb.min.css" rel="stylesheet" />
+    <title>Login Merchant</title>
+
+</head>
+
+<body style="background-color: #0d1a65;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0e0e0;">
+        <a class="navbar-brand pl-5" href="#">
+            <img src="..\images\img_header_logo.png" alt="Hotel In Logo" style="height: 40px;" />
+        </a>
+        <a class="navbar-brand" style="font-family: 'Poppins', sans-serif;" href="#">Hotel In Affiliate</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="mitra_index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-nav">
+            <a href="register.html" class="btn btn-secondary">Register</a>
+        </div>
+    </nav>
+
+
+
+    <section class="vh-100 d-flex flex-column justify-content-center" style="background-color: #0d1a65;">
+
+        <div style="padding-top: 20px;"></div>
+        <h1 class="text-center text-white">Login</h1>
+
+        <div class="container py-2 flex-grow-1">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="https://images.unsplash.com/photo-1683498035728-867272bde3dc?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+
+                                    <form>
+
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <img src="..\images\img_header_logo.png" alt="Hotel In Affiliate"
+                                                class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                            <span class="h1 fw-bold mb-0">Hotel In</span>
+                                        </div>
+
+                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Kelola Properti
+                                            Anda</h5>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="merchant_email" id="merchant_email"
+                                                class="form-control form-control-lg" />
+                                            <label class="form-label" for="merchant_email">Company Email address</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="merchant_password" id="merchant_password"
+                                                class="form-control form-control-lg" />
+                                            <label class="form-label" for="merchant_password">Password</label>
+                                        </div>
+
+                                        <div class="pt-1 mb-4">
+                                            <button data-mdb-button-init data-mdb-ripple-init
+                                                class="btn btn-dark btn-lg btn-block" type="button"
+                                                onclick="login()">Login</button>
+                                        </div>
+
+                                        <a class="small text-muted" href="#!">Forgot password?</a>
+                                        <p class="small text-muted">Don't have an account? <a href="register.html"
+                                                class="fw-bold text-body"><u>Register here</u></a></p>
+                                        <a href="#!" class="small text-muted">Terms of use.</a>
+                                        <a href="#!" class="small text-muted">Privacy policy</a>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MDB -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.0.0/mdb.umd.min.js"></script>
+</body>

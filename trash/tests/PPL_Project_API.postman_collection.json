@@ -1,0 +1,115 @@
+{
+  "info": {
+    "_postman_id": "12345678-abcd-1234-abcd-1234567890ab",
+    "name": "PPL Project API",
+    "description": "API collection for PPL Project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "url": "http://localhost:5000/auth/register",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"user@example.com\",\"password\":\"your_password\",\"name\":\"Your Name\",\"phone\":\"1234567890\"}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "url": "http://localhost:5000/auth/login",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"user@example.com\",\"password\":\"your_password\"}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Customer",
+      "item": [
+        {
+          "name": "Get All Available Rooms",
+          "request": {
+            "url": "http://localhost:5000/rooms?check_in=2024-10-01&check_out=2024-10-05",
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Create New Booking",
+          "request": {
+            "url": "http://localhost:5000/bookings",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"room_id\":1,\"check_in\":\"2024-10-01\",\"check_out\":\"2024-10-05\",\"guest_count\":2}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Merchant",
+      "item": [
+        {
+          "name": "Get Merchant's Rooms",
+          "request": {
+            "url": "http://localhost:5000/merchant/rooms",
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Add New Room",
+          "request": {
+            "url": "http://localhost:5000/merchant/rooms",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Room Name\",\"type\":\"Deluxe\",\"price\":100,\"facilities\":[\"wifi\",\"pool\"],\"images\":[\"url1\",\"url2\"]}"
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+Activating virtual environment...
+Starting Flask application...
+ * Serving Flask app 'app.py'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 805-433-252
+127.0.0.1 - - [26/Oct/2024 13:59:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 13:59:21] "[36mGET /static/js/hotels.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 13:59:21] "[36mGET /static/images/banner.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 13:59:22] "GET /api/v1/hotels?offset=0&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 13:59:33] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 13:59:33] "[36mGET /static/js/hotels.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 13:59:33] "GET /api/v1/hotels?offset=0&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 13:59:33] "[36mGET /static/images/banner.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 13:59:34] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 13:59:34] "[36mGET /static/js/hotels.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 13:59:34] "[36mGET /static/images/banner.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 13:59:34] "GET /api/v1/hotels?offset=0&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 13:59:39] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 13:59:39] "[36mGET /static/html/customer_login.html HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 14:22:54] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:22:54] "[36mGET /static/html/customer_login.html HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 14:25:06] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:06] "[36mGET /static/html/customer_login.html HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 14:25:08] "POST /api/v1/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:09] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:09] "[36mGET /static/js/hotels.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 14:25:09] "GET /api/v1/hotels?offset=0&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:09] "[36mGET /static/images/banner.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Oct/2024 14:25:23] "GET /api/v1/hotels?offset=5&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:25] "GET /api/v1/hotels?offset=10&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:28] "GET /api/v1/hotels?offset=15&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:29] "GET /api/v1/hotels?offset=20&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:33] "GET /api/v1/hotels?offset=25&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:34] "GET /api/v1/hotels?offset=30&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:34] "GET /api/v1/hotels?offset=35&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:35] "GET /api/v1/hotels?offset=40&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:35] "GET /api/v1/hotels?offset=45&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:35] "GET /api/v1/hotels?offset=50&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:35] "GET /api/v1/hotels?offset=55&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:35] "GET /api/v1/hotels?offset=60&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:35] "GET /api/v1/hotels?offset=65&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=70&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=75&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=80&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=85&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=90&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=95&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:36] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:37] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:48] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:49] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:49] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:50] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:50] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [26/Oct/2024 14:25:50] "GET /api/v1/hotels?offset=100&limit=5 HTTP/1.1" 200 -

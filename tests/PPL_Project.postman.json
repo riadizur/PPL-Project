@@ -1,0 +1,352 @@
+{
+    "info": {
+      "name": "Hotel Booking API",
+      "description": "API endpoints for hotel booking system.",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Authentication",
+        "item": [
+          {
+            "name": "Register User",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"email\": \"testuser@example.com\", \"password\": \"password123\", \"name\": \"Test User\", \"phone\": \"1234567890\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/auth/register",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "auth", "register"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Login User",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"email\": \"testuser@example.com\", \"password\": \"password123\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/auth/login",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "auth", "login"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Register Merchant",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"email\": \"merchant@example.com\", \"password\": \"merchantpass\", \"business_name\": \"Test Merchant\", \"address\": \"123 Merchant St\", \"phone\": \"0987654321\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/auth/merchant/register",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "auth", "merchant", "register"]
+              }
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Customer Endpoints",
+        "item": [
+          {
+            "name": "Get All Available Rooms",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/rooms?check_in=2024-10-01&check_out=2024-10-10&price_min=50&price_max=200&facility_ids=[1,2]",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "rooms"],
+                "query": [
+                  {
+                    "key": "check_in",
+                    "value": "2024-10-01"
+                  },
+                  {
+                    "key": "check_out",
+                    "value": "2024-10-10"
+                  },
+                  {
+                    "key": "price_min",
+                    "value": "50"
+                  },
+                  {
+                    "key": "price_max",
+                    "value": "200"
+                  },
+                  {
+                    "key": "facility_ids",
+                    "value": "[1,2]"
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get Room Details",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/rooms/{id}",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "rooms", "{id}"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Search Rooms",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/rooms/search?keyword=Deluxe&location=City%20Center&date_range=2024-10-01%20to%202024-10-10",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "rooms", "search"],
+                "query": [
+                  {
+                    "key": "keyword",
+                    "value": "Deluxe"
+                  },
+                  {
+                    "key": "location",
+                    "value": "City Center"
+                  },
+                  {
+                    "key": "date_range",
+                    "value": "2024-10-01 to 2024-10-10"
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create New Booking",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"room_id\": 1, \"check_in\": \"2024-10-01\", \"check_out\": \"2024-10-10\", \"guest_count\": 2}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/bookings",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "bookings"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get User's Booking History",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/bookings",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "bookings"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get Booking Details",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/bookings/{id}",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "bookings", "{id}"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Cancel Booking",
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/bookings/{id}/cancel",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "bookings", "{id}", "cancel"]
+              }
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Payment Endpoints",
+        "item": [
+          {
+            "name": "Initialize Payment",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"booking_id\": 1, \"payment_method\": \"credit_card\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/payments/initialize",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "payments", "initialize"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Confirm Payment",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"payment_id\": 1, \"transaction_id\": \"abc123\"}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/payments/confirm",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "payments", "confirm"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Check Payment Status",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/payments/{id}/status",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "payments", "{id}", "status"]
+              }
+            },
+            "response": []
+          }
+        ]
+      },
+      {
+        "name": "Merchant Endpoints",
+        "item": [
+          {
+            "name": "Get Merchant's Rooms",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/merchant/rooms",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "merchant", "rooms"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create Room",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"name\": \"Deluxe Room\", \"description\": \"A deluxe room with sea view\", \"price\": 150, \"facilities\": [1, 2]}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/merchant/rooms",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "merchant", "rooms"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update Room",
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\"name\": \"Updated Deluxe Room\", \"description\": \"An updated deluxe room with sea view\", \"price\": 180, \"facilities\": [1, 2]}"
+              },
+              "url": {
+                "raw": "http://localhost:5000/api/v1/merchant/rooms/{id}",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "merchant", "rooms", "{id}"]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete Room",
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5000/api/v1/merchant/rooms/{id}",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5000",
+                "path": ["api", "v1", "merchant", "rooms", "{id}"]
+              }
+            },
+            "response": []
+          }
+        ]
+      }
+    ]
+  }

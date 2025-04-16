@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Invoice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a237e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .account-btn {
+            background: #FFC107;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+        }
+
+        /* Invoice Card */
+        .invoice-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .invoice-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .invoice-logo {
+            width: 80px;
+        }
+
+        .invoice-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .invoice-info p {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        /* Hotel Details */
+        .hotel-details {
+            background: #1a237e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            color: white;
+        }
+
+        .hotel-header {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hotel-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .hotel-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Price Details */
+        .price-details {
+            margin-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+        }
+
+        .invoice-footer {
+            color: #666;
+            font-style: italic;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Ticket Button */
+        .ticket-btn {
+            background: #FFC107;
+            color: black;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: #FFC107;
+            padding: 60px 0;
+            margin-top: 60px;
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            width: 100px;
+        }
+
+        .footer-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .invoice-card {
+                padding: 20px;
+            }
+
+            .hotel-header {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="/api/placeholder/100/100" alt="Logo" class="logo">
+            <button class="account-btn">ACCOUNT</button>
+        </header>
+
+        <!-- Invoice Card -->
+        <div class="invoice-card">
+            <div class="invoice-header">
+                <img src="/api/placeholder/80/80" alt="Logo" class="invoice-logo">
+                <div class="invoice-info">
+                    <h1 class="invoice-title">INVOICE</h1>
+                    <p>Invoice number: no 123-4321</p>
+                    <p>Invoice date: 03.03.2024</p>
+                </div>
+            </div>
+
+            <!-- Hotel Details -->
+            <div class="hotel-details">
+                <div class="hotel-header">
+                    <img src="8.jpg" alt="Hotel" class="hotel-image">
+                    <div class="hotel-info">
+                        <small>CVK Park Bosphorus...</small>
+                        <h3>Superior room - 1 double bed or 2 twin beds</h3>
+                        <span class="rating">4.2 Very Good</span>
+                    </div>
+                </div>
+
+                <div class="price-details">
+                    <h4>Price Details</h4>
+                    <div class="price-row">
+                        <span>Base Fare</span>
+                        <span>IDR 199K</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Discount</span>
+                        <span>IDR 0</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Taxes</span>
+                        <span>IDR 19K</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Total</span>
+                        <span>IDR 218K</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="invoice-footer">
+                <p>For any discrepancies in billing, please contact our Billing department.</p>
+                <p>Thank you for choosing us!</p>
+            </div>
+        </div>
+
+        <button class="ticket-btn">CHECK YOUR TICKET</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="/api/placeholder/100/100" alt="Logo" class="footer-logo">
+            <div class="footer-info">
+                <h3>Tetap bersama kami</h3>
+                <p>📍 Jakarta, Indonesia</p>
+                <p>✉️ Hello@Email.com</p>
+                <p>📞 (+62) 123 456 789</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle ticket button click
+        document.querySelector('.ticket-btn').addEventListener('click', function() {
+            console.log('Checking ticket...');
+            // Add ticket checking functionality here
+        });
+    </script>
+</body>
+</html>

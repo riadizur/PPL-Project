@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QR Scanner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary-blue: #1a237e;
+            --primary-yellow: #FFA000;
+            --light-bg: #ffffff;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Elements */
+        .background-circles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .bg-circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -100px;
+        }
+
+        .bg-circle-2 {
+            width: 250px;
+            height: 250px;
+            bottom: 10%;
+            left: -100px;
+        }
+
+        /* Top Actions Bar */
+        .top-actions {
+            position: relative;
+            z-index: 2;
+            background-color: var(--primary-yellow);
+            margin: 16px;
+            padding: 12px 20px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(255, 160, 0, 0.2);
+        }
+
+        .action-button {
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            background: rgba(26, 35, 126, 0.1);
+        }
+
+        /* Scanner Container */
+        .scanner-container {
+            position: relative;
+            margin: 20px auto;
+            width: 280px;
+            height: 280px;
+            perspective: 1000px;
+        }
+
+        .scanner-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        #scanner-video {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        /* Scanner Corners */
+        .corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--primary-yellow);
+            z-index: 2;
+        }
+
+        .top-left {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 16px 0 0 0;
+        }
+
+        .top-right {
+            top: 0;
+            right: 0;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0 16px 0 0;
+        }
+
+        .bottom-left {
+            bottom: 0;
+            left: 0;
+            border-right: none;
+            border-top: none;
+            border-radius: 0 0 0 16px;
+        }
+
+        .bottom-right {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 16px 0;
+        }
+
+        /* Scanning Animation */
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary-yellow) 50%, transparent 100%);
+            z-index: 2;
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* Zoom Control */
+        .zoom-control {
+            position: relative;
+            width: 80%;
+            max-width: 300px;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0 10px;
+        }
+
+        .zoom-icon {
+            color: white;
+            font-size: 20px;
+        }
+
+        .zoom-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .zoom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-yellow);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .zoom-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            background: linear-gradient(180deg, transparent 0%, rgba(26, 35, 126, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-icon.active {
+            background: var(--primary-yellow);
+            box-shadow: 0 4px 15px rgba(255, 160, 0, 0.3);
+        }
+
+        .nav-label {
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        /* Scanner Overlay */
+        .scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            mask: radial-gradient(circle at center, transparent 100px, black 101px);
+            -webkit-mask: radial-gradient(circle at center, transparent 100px, black 101px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Flash Effect */
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes flash {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Circles -->
+    <div class="background-circles">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+    </div>
+
+    <!-- Top Actions -->
+    <div class="top-actions">
+        <button class="action-button">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4v12H8V4h12m0-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 9.67l1.69 2.26 2.48-3.1L19 15H9zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/>
+            </svg>
+        </button>
+        <button class="action-button">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+            </svg>
+        </button>
+        <button class="action-button">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3-8c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Scanner Container -->
+    <div class="scanner-container">
+        <div class="scanner-frame">
+            <video id="scanner-video" autoplay playsinline></video>
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+            <div class="scan-line"></div>
+            <div class="scanner-overlay"></div>
+        </div>
+    </div>
+
+    <!-- Zoom Control -->
+    <div class="zoom-control">
+        <span class="zoom-icon">-</span>
+        <input type="range" class="zoom-slider" min="0" max="100" value="50">
+        <span class="zoom-icon">+</span>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <div class="nav-icon">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </div>
+            <span class="nav-label">Account</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <div class="nav-icon active">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+            </div>
+            <span class="nav-label">Scan</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <div class="nav-icon">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/>
+                </svg>
+            </div>
+            <span class="nav-label">History</span>
+        </a>
+    </nav>
+
+    <div class="flash"></div>
+
+    <script>
+        // Camera initialization
+        async function initCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { 
+                        facingMode: 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                });
+                const video = document.getElementById('scanner-video');
+                video.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+                alert('Cannot access camera. Please make sure you have given permission.');
+            }
+        }
+
+        // Flash effect
+        function triggerFlash() {
+            const flash = document.querySelector('.flash');
+            flash.style.animation = 'flash 0.5s ease-out';
+            setTimeout(() => {
+                flash.style.animation = '';
+            }, 500);
+        }
+
+        // Zoom control
+        const zoomSlider = document.querySelector('.zoom-slider');
+        zoomSlider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            // Here you would implement actual zoom functionality
+            console.log('Zoom level:', value);
+        });
+
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-icon').forEach(icon => {
+                    icon.classList.remove('active');
+                });
+                this.querySelector('.nav-icon').classList.add('active');
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initCamera);
+    </script>
+</body>
+</html>

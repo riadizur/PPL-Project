@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Hotel Management System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        /* User Stats Cards */
+        .user-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-card.admin {
+            background-color: var(--primary-color);
+        }
+
+        .status-card.staff {
+            background-color: var(--secondary-color);
+        }
+
+        .status-card.active {
+            background-color: var(--success-color);
+        }
+
+        /* User Actions Section */
+        .user-actions {
+            background-color: var(--text-light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input,
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid var(--gray-medium);
+            border-radius: var(--border-radius);
+            flex: 1;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray-medium);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gray-light);
+        }
+
+        /* Table Enhancement */
+        .table-card {
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-table .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-badge.active {
+            background-color: var(--success-color);
+            color: var(--text-light);
+        }
+
+        .status-badge.inactive {
+            background-color: var(--text-muted);
+            color: var(--text-light);
+        }
+
+        .action-menu {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .action-btn.edit {
+            background-color: var(--warning-color);
+            color: var(--text-light);
+        }
+
+        .action-btn.delete {
+            background-color: var(--danger-color);
+            color: var(--text-light);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            align-items: center;
+        }
+
+        .page-link {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            background-color: var(--text-light);
+        }
+
+        .page-link.active {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .page-link:hover:not(.active) {
+            background-color: var(--gray-light);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--text-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--gray-medium);
+            border-radius: var(--border-radius);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .user-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .search-filter {
+                flex-direction: column;
+            }
+            
+            .user-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Hotelin Logo" class="logo">
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="room.html">Kamar</a>
+                <a href="reservation.html">Reservasi</a>
+                <a href="users.html" class="active">Pengguna</a>
+                <a href="reports.html">Laporan & Analisis</a>
+                <a href="html/edit-property.html">Edit Properti</a>
+            </nav>
+
+            <div class="account-section">
+                <img src="images/account.png" alt="Foto Profil" class="account-image">
+                <span class="account-name">Admin1</span>
+                <a href="html/mitra_index.html" class="logout-button">Logout</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" role="main">
+            <div class="content-header">
+                <h1>PENGGUNA <span>Manajemen User</span></h1>
+            </div>
+
+            <!-- User Statistics -->
+            <div class="section user-stats">
+                <div class="status-card admin">
+                    <div class="status-content">
+                        <h3>Total Admin</h3>
+                        <div class="status-number">5</div>
+                    </div>
+                </div>
+
+                <div class="status-card staff">
+                    <div class="status-content">
+                        <h3>Total Staff</h3>
+                        <div class="status-number">10</div>
+                    </div>
+                </div>
+
+                <div class="status-card active">
+                    <div class="status-content">
+                        <h3>User Aktif</h3>
+                        <div class="status-number">15</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Actions -->
+            <div class="section user-actions">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="showModal('addUserModal')">+ Tambah User</button>
+                    <button class="btn btn-secondary">Export Data</button>
+                </div>
+
+                <div class="search-filter">
+                    <input type="text" placeholder="Cari pengguna..." class="search-input">
+                    <select class="filter-select">
+                        <option value="">Semua Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- User Table -->
+            <div class="section table-card">
+                <h2>Daftar Pengguna</h2>
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Admin1</td>
+                                <td>admin1@hotel.com</td>
+                                <td>Admin</td>
+                                <td><span class="status-badge active">Aktif</span></td>
+                                <td>
+                                    <div class="action-menu">
+                                        <button class="action-btn edit">Edit</button>
+                                        <button class="action-btn delete">Hapus</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Staff1</td>
+                                <td>staff1@hotel.com</td>
+                                <td>Staff</td>
+                                <td><span class="status-badge active">Aktif</span></td>
+                                <td>
+                                    <div class="action-menu">
+                                        <button class="action-btn edit">Edit</button>
+                                        <button class="action-btn delete">Hapus</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Staff2</td>
+                                <td>staff2@hotel.com</td>
+                                <td>Staff</td>
+                                <td><span class="status-badge inactive">Nonaktif</span></td>
+                                <td>
+                                    <div class="action-menu">
+                                        <button class="action-btn edit">Edit</button>
+                                        <button class="action-btn delete">Hapus</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <a href="#" class="page-link">&laquo;</a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">&raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add/Edit User Modal -->
+        <div id="addUserModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Tambah User Baru</h2>
+                    <span class="modal-close" onclick="hideModal('addUserModal')">&times;</span>
+                </div>
+
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" class="form-select" required>
+                            <option value="">Pilih Role</option>
+                            <option value="admin">Admin</option>
+                            <option value="staff">Staff</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="form-select" required>
+                            <option value="active">Aktif</option>
+                            <option value="inactive">Nonaktif</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="hideModal('addUserModal')">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+    </script>
+</body>
+</html>

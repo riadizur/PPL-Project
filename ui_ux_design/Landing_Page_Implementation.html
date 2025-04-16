@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTelin - Hotel Booking</title>
+    <style>
+        :root {
+            --primary-blue: #1a237e;
+            --primary-yellow: #ffc107;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+        .login-btn {
+            background-color: var(--primary-yellow);
+            color: black;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 50px;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        /* Modified Search Bar */
+        .search-container {
+            background: white;
+            border-radius: 50px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 30px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .search-input {
+            flex: 2;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .date-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .date-input {
+            border: none;
+            font-size: 16px;
+            color: #333;
+            width: 120px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .date-separator {
+            margin: 0 10px;
+            color: #666;
+        }
+
+        .guest-section {
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 10px;
+        }
+
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .counter-btn {
+            background: none;
+            border: 1px solid #ddd;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .counter-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .counter-value {
+            font-size: 16px;
+            color: #333;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .search-btn {
+            background: var(--primary-yellow);
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #ffb300;
+        }
+
+        /* Gallery Section */
+        .gallery-title {
+            padding: 50px;
+            font-size: 36px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gallery-item .hotel-name {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Merchant Section */
+        .merchant-section {
+            padding: 100px 50px;
+            text-align: center;
+        }
+
+        .merchant-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .merchant-subtitle {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .register-btn {
+            background-color: var(--primary-yellow);
+            color: black;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-yellow);
+            padding: 50px;
+            color: black;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            width: 100px;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+                border-radius: 25px;
+                padding: 15px;
+                margin: 20px;
+            }
+
+            .search-input, .date-section, .guest-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 15px 0;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="assets/qr-code.png" alt="HTelin Logo">
+        </div>
+        <a href="#" class="login-btn">LOGIN / SIGNUP</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Choose, Scan, and Pay</h1>
+        <p>Seamless in your pocket</p>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <!-- Kota Input -->
+        <input type="text" class="search-input" placeholder="Pilih Kota yang dituju">
+        
+        <!-- Date Section -->
+        <div class="date-section">
+            <input type="text" class="date-input" placeholder="mm/dd/yyyy" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+            <span class="date-separator">→</span>
+            <input type="text" class="date-input" placeholder="mm/dd/yyyy" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+        </div>
+        
+        <!-- Guest Counter -->
+        <div class="guest-section">
+            <div class="guest-counter">
+                <button class="counter-btn" onclick="decreaseGuests()">-</button>
+                <span class="counter-value">2</span>
+                <button class="counter-btn" onclick="increaseGuests()">+</button>
+            </div>
+        </div>
+        
+        <!-- Search Button -->
+        <button class="search-btn">Search</button>
+    </div>
+
+    <!-- Gallery Section -->
+    <h2 class="gallery-title">Let's Find Out</h2>
+    <div class="gallery-grid">
+        <!-- Gallery items will be added dynamically -->
+    </div>
+
+    <!-- Merchant Section -->
+    <section class="merchant-section">
+        <h2 class="merchant-title">Let's join us</h2>
+        <p class="merchant-subtitle">Succesor your Hotels</p>
+        <a href="#" class="register-btn">REGISTER FOR MERCHANT</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/qr-code.png" alt="HTelin Logo">
+            </div>
+            <div class="contact-info">
+                <h3>Tetap bersama kami</h3>
+                <p>Jakarta, Indonesia</p>
+                <p>Hello@Email.com</p>
+                <p>(+62) 123 456 789</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery Data
+        const galleryData = [
+            { image: '11.jpg', name: 'Palagan Star' },
+            { image: '12.jpg', name: 'Palagan Star' },
+            { image: '13.jpg', name: 'Palagan Star' },
+            // Add more hotels as needed
+        ];
+
+        // Populate Gallery
+        const galleryGrid = document.querySelector('.gallery-grid');
+        galleryData.forEach(hotel => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.innerHTML = `
+                <img src="${hotel.image}" alt="${hotel.name}">
+                <div class="hotel-name">${hotel.name}</div>
+            `;
+            galleryGrid.appendChild(galleryItem);
+        });
+
+        // Guest Counter Logic
+        let guestCount = 2;
+        const counterValue = document.querySelector('.counter-value');
+
+        function decreaseGuests() {
+            if (guestCount > 1) {
+                guestCount--;
+                counterValue.textContent = guestCount;
+            }
+        }
+
+        function increaseGuests() {
+            if (guestCount < 10) {
+                guestCount++;
+                counterValue.textContent = guestCount;
+            }
+        }
+
+        // Initialize date inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            const dateInputs = document.querySelectorAll('.date-input');
+            dateInputs[0].min = today.toISOString().split('T')[0];
+            dateInputs[1].min = tomorrow.toISOString().split('T')[0];
+
+            dateInputs[0].addEventListener('change', function() {
+                const selectedDate = new Date(this.value);
+                const nextDay = new Date(selectedDate);
+                nextDay.setDate(nextDay.getDate() + 1);
+                dateInputs[1].min = nextDay.toISOString().split('T')[0];
+                
+                if (dateInputs[1].value && new Date(dateInputs[1].value) <= selectedDate) {
+                    dateInputs[1].value = nextDay.toISOString().split('T')[0];
+                }
+            });
+        });
+    </script>
+</body>
+</html>

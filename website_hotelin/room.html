@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Kamar - Hotelin</title>
+    <link rel="stylesheet" href="room.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Hotelin Logo" class="logo">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="room.html" class="active">Kamar</a>
+                <a href="reservation.html">Reservasi</a>
+                <a href="users.html">Pengguna</a>
+                <a href="reports.html">Laporan & Analisis</a>
+            </nav>
+
+            <div class="account-section">
+                <img src="images/account.png" alt="Foto Profil" class="account-image">
+                <span class="account-name">Admin1</span>
+                <a href="#" class="logout-button">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Manajemen Kamar</h1>
+                
+                <div class="room-controls">
+                    <button class="btn btn-primary" id="addRoomBtn">
+                        <i class="icon-plus"></i> Tambah Kamar
+                    </button>
+                    
+                    <div class="filter-controls">
+                        <select class="room-filter" id="statusFilter">
+                            <option value="all">Semua Status</option>
+                            <option value="available">Tersedia</option>
+                            <option value="occupied">Terpakai</option>
+                            <option value="dirty">Kotor</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <section class="room-table-container">
+                <table class="room-table">
+                    <thead>
+                        <tr>
+                            <th>Nomor Kamar</th>
+                            <th>Tipe Kamar</th>
+                            <th>Status</th>
+                            <th>Harga per Malam</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>Standard</td>
+                            <td><span class="status-badge available">Tersedia</span></td>
+                            <td>Rp 500.000</td>
+                            <td class="action-buttons">
+                                <button class="btn btn-edit" title="Edit kamar">
+                                    <i class="icon-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-delete" title="Hapus kamar">
+                                    <i class="icon-trash"></i> Hapus
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>Deluxe</td>
+                            <td><span class="status-badge occupied">Terpakai</span></td>
+                            <td>Rp 750.000</td>
+                            <td class="action-buttons">
+                                <button class="btn btn-edit" title="Edit kamar">
+                                    <i class="icon-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-delete" title="Hapus kamar">
+                                    <i class="icon-trash"></i> Hapus
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

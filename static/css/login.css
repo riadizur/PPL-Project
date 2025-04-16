@@ -1,0 +1,76 @@
+.register-3 {
+    color: var(--gray_100) !important;
+    padding-left: 33px;
+    padding-right: 33px;
+    font-size: 16px;
+    background-color: var(--blue_gray_900) !important;
+    height: 32px;
+    min-width: 178px;
+    border-radius: 8px !important;
+    border: 1px solid var(--blue_gray_900);
+
+    @media only screen and (max-width: 550px) {
+        padding-left: var(--space-7x1);
+        padding-right: var(--space-7x1);
+    }
+}
+
+.columnlabel-2 {
+    margin-top: 6px;
+    padding-left: 56px;
+    padding-right: 350px;
+    gap: var(--space-10xl);
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    @media only screen and (max-width: 1050px) {
+        padding-left: var(--space-7x1);
+        padding-right: var(--space-7x1);
+    }
+}
+
+.columntitle-2 {
+    margin-right: 52px;
+    gap: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    @media only screen and (max-width: 1050px) {
+        margin-right: 0px;
+    }
+}
+
+.title-link {
+    margin-right: 56px;
+
+    @media only screen and (max-width: 1050px) {
+        margin-right: 0px;
+    }
+}
+
+.formcontact-1 {
+    margin-right: 16px;
+    gap: var(--space-9x1);
+    display: flex;
+    background-color: var(--background_neutral_accent);
+    width: 48%;
+    flex-direction: column;
+    padding: var(--space-9x1);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--blue_gray_100);
+
+    @media only screen and (max-width: 1050px) {
+        width: 100%;
+        margin-right: 0px;
+    }
+
+    @media only screen and (max-width: 550px) {
+        padding: var(--space-7x1);
+    }
+}
+
+.label input {
+    color: black;
+}

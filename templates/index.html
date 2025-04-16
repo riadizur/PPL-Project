@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+    />
+    <title>Career-Hiring Day</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between border-b border-[#F4EFE6] px-6 md:px-10 py-3">
+          <div class="flex items-center gap-8">
+          <div class="flex items-center gap-4 text-[#1C160C]">
+              <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_6_330)">
+                  <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
+                      fill="currentColor"
+                  ></path>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_6_330"><rect width="48" height="48" fill="white"></rect></clipPath>
+                  </defs>
+              </svg>
+              </div>
+              <h2 class="text-[#1C160C] text-lg font-bold leading-tight">Career-Hiring Day</h2>
+          </div>
+          </div>
+          <div class="flex flex-1 justify-end gap-6">
+          <div class="flex items-center gap-6">
+              <a class="text-[#1C160C] text-sm font-medium" href="/">Job For You</a>
+              <a class="text-[#1C160C] text-sm font-medium" href="/">Career</a>
+              <a class="text-[#1C160C] text-sm font-medium" href="/">Company</a>
+              <a class="text-[#1C160C] text-sm font-medium" href="/">Events</a>
+          </div>
+          <div class="flex gap-2">
+              <button class="flex items-center justify-center rounded-full h-10 px-4 bg-[#019863] text-[#FFFFFF] text-sm font-bold transition hover:bg-[#017855]" onclick="window.open('/admin','__self');">
+              <span class="truncate">Post a job</span>
+              </button>
+              <button class="flex items-center justify-center rounded-full h-10 px-4 bg-[#F4EFE6] text-[#1C160C] text-sm font-bold transition hover:bg-[#E1D4B3]" onclick="window.open('/admin','__self');">
+              <span class="truncate">For Employer</span>
+              </button>
+          </div>
+          <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://cdn.usegalileo.ai/stability/2f075930-ffd6-4841-9270-99cc6e9d54ee.png");'></div>
+          </div>
+      </header>
+        <div class="px-6 md:px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex gap-3 p-3 flex-wrap pr-4">
+              <!-- Filter Buttons -->
+              <div class="flex gap-2 flex-wrap">
+                <button class="filter-button" onclick="filterQualification('senior')">Senior</button>
+                <button class="filter-button" onclick="filterQualification('mid')">Mid-Level</button>
+                <button class="filter-button" onclick="filterQualification('junior')">Junior</button>
+                <button class="filter-button" onclick="filterQualification('internship')">Internship</button>
+                <button class="filter-button" onclick="filterJobs('full-time')">Full-Time</button>
+                <button class="filter-button" onclick="filterJobs('part-time')">Part-Time</button>
+                <button class="filter-button" onclick="filterJobs('contract')">contract</button>
+                <button class="filter-button" onclick=" ('remote')">Remote</button>
+                <button class="filter-button" onclick="filterJobsPlace('onsite')">Onsite</button>
+              </div>
+            </div>
+            <div class="px-4 py-3">
+              <label class="flex flex-col h-12 w-full">
+                <div class="flex w-full items-stretch rounded-xl h-full">
+                  <div class="text-[#A18249] flex bg-[#F4EFE6] items-center justify-center pl-4 rounded-l-xl border-r-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                    </svg>
+                  </div>
+                  <input
+                    id="Search"
+                    placeholder="Search for job titles, companies, or interests"
+                    class="form-input flex w-full h-full rounded-r-xl text-[#1C160C] focus:outline-none focus:ring-0 border-none bg-[#F4EFE6] placeholder:text-[#A18249] px-4"
+                  />
+                </div>
+              </label>
+            </div>
+            <h1 class="text-[#1C160C] tracking-light text-2xl font-bold leading-tight px-4 text-left pb-3 pt-6">Explore job opportunities</h1>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              </div>
+            <div class="flex justify-center py-4">
+              <button id="loadMoreButton" class="bg-[#019863] text-[#FFFFFF] rounded-lg px-6 py-2 text-sm font-bold transition hover:bg-[#017855]">
+                View More Jobs
+              </button>
+            </div>
+          </div>
+        </div>
+        <footer class="flex items-center justify-center border-t border-[#F4EFE6] px-6 py-3">
+          <p class="text-[#1C160C] text-sm font-normal">© 2024 Career-Hiring Day. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
+
+    <style>
+      .job-card {
+        background-color: #F9F9F9;
+        border-radius: 12px;
+        padding: 16px;
+        transition: transform 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .job-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .filter-button {
+        background-color: #F4EFE6;
+        color: #1C160C;
+        border-radius: 8px;
+        padding: 8px 12px;
+        margin: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+      }
+
+      .filter-button.active {
+          background-color: #A18249; /* Active background color */
+          color: white; /* Active text color */
+          border-radius: 5px; /* Optional: round the corners */
+      }
+      .filter-button:hover {
+        background-color: #E1D4B3;
+      }
+    </style>
+    <script src="/static/js/hotels.js"></script>
+  </body>
+</html>

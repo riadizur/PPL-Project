@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Enhanced Account Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary-blue: #1a237e;
+            --primary-yellow: #FFA000;
+            --light-bg: #ffffff;
+            --gradient-blue: linear-gradient(135deg, #1a237e 0%, #303f9f 100%);
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--gradient-blue);
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Elements */
+        .background-circle {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -150px;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            left: -100px;
+        }
+
+        /* Header Section */
+        .header {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-right: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Account Card */
+        .account-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Form Group */
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .form-group:last-child {
+            border-bottom: none;
+        }
+
+        .form-label-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .field-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(26, 35, 126, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+        }
+
+        .label-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            color: #666;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .form-value {
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .change-button {
+            background: rgba(255, 160, 0, 0.1);
+            border: none;
+            color: var(--primary-yellow);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .change-button:hover {
+            background: var(--primary-yellow);
+            color: white;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 30px 30px;
+            background: linear-gradient(180deg, transparent 0%, rgba(26, 35, 126, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            gap: 8px;
+        }
+
+        .nav-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-icon.active {
+            background: var(--primary-yellow);
+            box-shadow: 0 5px 15px rgba(255, 160, 0, 0.3);
+        }
+
+        .nav-label {
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <!-- Background Decorations -->
+    <div class="background-circle circle-1"></div>
+    <div class="background-circle circle-2"></div>
+
+    <!-- Header -->
+    <div class="header">
+        <button class="back-button" onclick="history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+        </button>
+        <h1 class="page-title">Profile Settings</h1>
+    </div>
+
+    <!-- Account Card -->
+    <div class="account-card">
+        <div class="form-group">
+            <div class="form-label-group">
+                <div class="field-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div class="label-content">
+                    <span class="form-label">Name</span>
+                    <span class="form-value">John Doe</span>
+                </div>
+            </div>
+            <button class="change-button">Change</button>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label-group">
+                <div class="field-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                </div>
+                <div class="label-content">
+                    <span class="form-label">Display Name</span>
+                    <span class="form-value">John Doe</span>
+                </div>
+            </div>
+            <button class="change-button">Change</button>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label-group">
+                <div class="field-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </div>
+                <div class="label-content">
+                    <span class="form-label">Email</span>
+                    <span class="form-value">john.doe@gmail.com</span>
+                </div>
+            </div>
+            <button class="change-button">Change</button>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label-group">
+                <div class="field-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+                </div>
+                <div class="label-content">
+                    <span class="form-label">Password</span>
+                    <span class="form-value">••••••••</span>
+                </div>
+            </div>
+            <button class="change-button">Change</button>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label-group">
+                <div class="field-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                </div>
+                <div class="label-content">
+                    <span class="form-label">Phone number</span>
+                    <span class="form-value">+1 000-000-0000</span>
+                </div>
+            </div>
+            <button class="change-button">Change</button>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label-group">
+                <div class="field-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                </div>
+                <div class="label-content">
+                    <span class="form-label">Address</span>
+                    <span class="form-value">California, USA</span>
+                </div>
+            </div>
+            <button class="change-button">Change</button>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label-group">
+                <div class="field-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5h-7v-2h7v2z"/>
+                    </svg>
+                </div>
+                <div class="label-content">
+                    <span class="form-label">Date of birth</span>
+                    <span class="form-value">01-01-1992</span>
+                </div>
+            </div>
+            <button class="change-button">Change</button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <div class="nav-icon active">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </div>
+            <span class="nav-label">Account</span>
+        </a>
+        
+        <a href="#" class="nav-item">
+            <div class="nav-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+            </div>
+            <span class="nav-label">Scan</span>
+        </a>
+        
+        <a href="#" class="nav-item">
+            <div class="nav-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/>
+                </svg>
+            </div>
+            <span class="nav-label">History</span>
+        </a>
+    </nav>
+
+    <script>
+        // Ripple effect for buttons
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add('ripple');
+
+            const ripple = button.getElementsByClassName('ripple')[0];
+            if (ripple) {
+                ripple.remove();
+            }
+
+            button.appendChild(circle);
+        }
+
+        // Add ripple effect to all change buttons
+        const buttons = document.getElementsByClassName('change-button');
+        for (const button of buttons) {
+            button.addEventListener('click', createRipple);
+        }
+
+        // Handle form field changes
+        function handleFieldChange(fieldName, currentValue) {
+            // Create modal for editing
+            const modal = document.createElement('div');
+            modal.className = 'edit-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>Edit ${fieldName}</h3>
+                    <input type="text" value="${currentValue}" class="edit-input">
+                    <div class="modal-buttons">
+                        <button class="cancel-btn">Cancel</button>
+                        <button class="save-btn">Save</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Handle modal interactions
+            modal.querySelector('.cancel-btn').onclick = () => modal.remove();
+            modal.querySelector('.save-btn').onclick = () => {
+                const newValue = modal.querySelector('.edit-input').value;
+                // Here you would typically make an API call to update the value
+                console.log(`Updating ${fieldName} to ${newValue}`);
+                modal.remove();
+            };
+        }
+
+        // Add click handlers to form groups
+        document.querySelectorAll('.form-group').forEach(group => {
+            const changeBtn = group.querySelector('.change-button');
+            changeBtn.onclick = () => {
+                const fieldName = group.querySelector('.form-label').textContent;
+                const currentValue = group.querySelector('.form-value').textContent;
+                handleFieldChange(fieldName, currentValue);
+            };
+        });
+
+        // Navigation handling
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-icon').forEach(icon => {
+                    icon.classList.remove('active');
+                });
+                this.querySelector('.nav-icon').classList.add('active');
+            });
+        });
+
+        // Add smooth scroll behavior
+        document.querySelector('.account-card').addEventListener('scroll', function() {
+            requestAnimationFrame(() => {
+                const scrolled = this.scrollTop > 0;
+                this.classList.toggle('scrolled', scrolled);
+            });
+        });
+
+        // Initialize page with fade-in animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+
+    <style>
+        /* Additional Animations */
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 600ms linear;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Modal Styles */
+        .edit-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .edit-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .save-btn {
+            background: var(--primary-yellow);
+            color: white;
+        }
+
+        /* Loading Animation */
+        .loaded .account-card {
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</body>
+</html>

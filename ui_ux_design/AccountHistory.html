@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="history-styles.css">
+    <style>
+        /* history-styles.css */
+:root {
+    --primary-color: #1a237e;
+    --secondary-color: #4f46e5;
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --gray-light: #f5f5f5;
+    --gray-medium: #e0e0e0;
+    --accent-yellow: #ffc107;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+.header-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.favorites, .user-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Cover Section */
+.cover-section {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #134e4a 0%, #fb923c 33%, #fbbf24 66%, #facc15 100%);
+    border-radius: 15px;
+    margin-bottom: 80px;
+}
+
+.upload-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.profile-image {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background-color: var(--gray-light);
+}
+
+.edit-profile-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: coral;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Profile Info */
+.profile-info {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.profile-info h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    color: #bbb;
+    font-size: 14px;
+}
+
+/* Tab Navigation */
+.tab-navigation {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    font-weight: 500;
+    cursor: pointer;
+    color: #666;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Booking History */
+.booking-history {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.booking-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hotel-info {
+    display: flex;
+    gap: 20px;
+}
+
+.hotel-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.booking-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.check-dates {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.date-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-group .label {
+    font-size: 12px;
+    color: #666;
+}
+
+.date-group .date {
+    font-weight: 500;
+}
+
+.date-separator {
+    color: #666;
+}
+
+.additional-info {
+    display: flex;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-item .icon {
+    color: var(--accent-yellow);
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-text .label {
+    font-size: 12px;
+    color: #666;
+}
+
+.info-text .value {
+    font-weight: 500;
+}
+
+.booking-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.download-btn {
+    background-color: var(--accent-yellow);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.arrow-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .booking-card {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hotel-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .check-dates {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .additional-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .booking-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .download-btn {
+        flex: 1;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-content">
+                <div class="favorites">
+                    <span class="heart-icon">♥</span>
+                    <span>Favourites</span>
+                </div>
+                <div class="user-mini">
+                    <span>John D.</span>
+                    <img src="/api/placeholder/40/40" alt="User avatar" class="avatar">
+                </div>
+            </div>
+        </header>
+
+        <!-- Cover Photo Section -->
+        <div class="cover-section">
+            <button class="upload-btn">
+                <span>⬆</span> Upload new cover
+            </button>
+            <div class="profile-image">
+                <img src="/api/placeholder/100/100" alt="Profile photo">
+                <button class="edit-profile-btn">✎</button>
+            </div>
+        </div>
+
+        <!-- Profile Info -->
+        <div class="profile-info">
+            <h1>John Doe.</h1>
+            <p>john.doe@gmail.com</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn">Account</button>
+            <button class="tab-btn active">History</button>
+        </div>
+
+        <!-- Booking History Cards -->
+        <div class="booking-history">
+            <!-- Booking Card 1 -->
+            <div class="booking-card">
+                <div class="hotel-info">
+                    <img src="/api/placeholder/80/80" alt="Hotel" class="hotel-img">
+                    <div class="booking-details">
+                        <div class="check-dates">
+                            <div class="date-group">
+                                <span class="label">Check-In</span>
+                                <span class="date">Thur, Dec 8</span>
+                            </div>
+                            <div class="date-separator">—</div>
+                            <div class="date-group">
+                                <span class="label">Check Out</span>
+                                <span class="date">Fri, Dec 9</span>
+                            </div>
+                        </div>
+                        <div class="additional-info">
+                            <div class="info-item">
+                                <span class="icon">⌚</span>
+                                <div class="info-text">
+                                    <span class="label">Check-in time</span>
+                                    <span class="value">12:00pm</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="icon">⌚</span>
+                                <div class="info-text">
+                                    <span class="label">Check-in out</span>
+                                    <span class="value">11:30am</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="icon">🔑</span>
+                                <div class="info-text">
+                                    <span class="label">Room no.</span>
+                                    <span class="value">On arrival</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-actions">
+                    <button class="download-btn">Download Ticket</button>
+                    <button class="arrow-btn">→</button>
+                </div>
+            </div>
+
+            <!-- Booking Card Template (repeated twice more) -->
+            <div class="booking-card">
+                <!-- Same structure as above, repeated -->
+            </div>
+            <div class="booking-card">
+                <!-- Same structure as above, repeated -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // history-script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Sample booking data - dalam implementasi nyata ini bisa dari API/database
+    const bookingData = [
+        {
+            hotelImage: "/api/placeholder/80/80",
+            checkIn: "Thur, Dec 8",
+            checkOut: "Fri, Dec 9",
+            checkInTime: "12:00pm",
+            checkOutTime: "11:30am",
+            roomNo: "On arrival",
+            ticketUrl: "#"
+        },
+        // Tambahkan data booking lainnya disini
+    ];
+
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Handle tab content switching
+            const tabName = button.textContent.toLowerCase();
+            if (tabName === 'account') {
+                window.location.href = 'index.html'; // Ganti dengan halaman account
+            }
+        });
+    });
+
+    // Upload cover photo functionality
+    const uploadBtn = document.querySelector('.upload-btn');
+    if (uploadBtn) {
+        uploadBtn.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const coverSection = document.querySelector('.cover-section');
+                        coverSection.style.backgroundImage = `url(${event.target.result})`;
+                        coverSection.style.backgroundSize = 'cover';
+                        coverSection.style.backgroundPosition = 'center';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            input.click();
+        });
+    }
+
+    // Edit profile picture functionality
+    const editProfileBtn = document.querySelector('.edit-profile-btn');
+    const profileImage = document.querySelector('.profile-image img');
+    
+    if (editProfileBtn && profileImage) {
+        editProfileBtn.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        profileImage.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            input.click();
+        });
+    }
+
+    // Download ticket functionality
+    const downloadButtons = document.querySelectorAll('.download-btn');
+    
+    downloadButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            // Dalam implementasi nyata, ini akan mengunduh tiket yang sebenarnya
+            downloadTicket(bookingData[index]);
+        });
+    });
+
+    // Arrow button functionality
+    const arrowButtons = document.querySelectorAll('.arrow-btn');
+    
+    arrowButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            // Tampilkan detail lengkap booking
+            showBookingDetails(bookingData[index]);
+        });
+    });
+
+    // Function to handle ticket download
+    function downloadTicket(booking) {
+        // Contoh implementasi sederhana untuk demo
+        const ticketContent = `
+            Booking Ticket
+            ==============
+            Check-in: ${booking.checkIn}
+            Check-out: ${booking.checkOut}
+            Check-in Time: ${booking.checkInTime}
+            Check-out Time: ${booking.checkOutTime}
+            Room No: ${booking.roomNo}
+        `;
+
+        // Buat blob dan unduh sebagai file teks
+        const blob = new Blob([ticketContent], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'booking-ticket.txt';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    }
+
+    // Function to show booking details
+    function showBookingDetails(booking) {
+        // Buat modal untuk menampilkan detail
+        const modalHTML = `
+            <div class="booking-modal">
+                <div class="modal-content">
+                    <h2>Booking Details</h2>
+                    <div class="booking-info">
+                        <p><strong>Check-in:</strong> ${booking.checkIn}</p>
+                        <p><strong>Check-out:</strong> ${booking.checkOut}</p>
+                        <p><strong>Check-in Time:</strong> ${booking.checkInTime}</p>
+                        <p><strong>Check-out Time:</strong> ${booking.checkOutTime}</p>
+                        <p><strong>Room Number:</strong> ${booking.roomNo}</p>
+                    </div>
+                    <button class="close-modal">Close</button>
+                </div>
+            </div>
+        `;
+
+        // Tambahkan modal ke body
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = modalHTML;
+        document.body.appendChild(modalContainer);
+
+        // Style untuk modal
+        const modalStyles = `
+            .booking-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+            .modal-content {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 500px;
+                width: 90%;
+            }
+            .booking-info {
+                margin: 20px 0;
+            }
+            .booking-info p {
+                margin: 10px 0;
+            }
+            .close-modal {
+                background: var(--accent-yellow);
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 100%;
+            }
+        `;
+
+        // Tambahkan styles
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = modalStyles;
+        document.head.appendChild(styleSheet);
+
+        // Handle close modal
+        const closeBtn = modalContainer.querySelector('.close-modal');
+        const modal = modalContainer.querySelector('.booking-modal');
+
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(modalContainer);
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                document.body.removeChild(modalContainer);
+            }
+        });
+    }
+
+    // Optional: Add animation effects for card hover
+    const bookingCards = document.querySelectorAll('.booking-card');
+    
+    bookingCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+            card.style.transition = 'all 0.3s ease';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'none';
+        });
+    });
+
+    // Add smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+
+// Tambahan: Fungsi untuk memformat tanggal
+function formatDate(date) {
+    const options = { weekday: 'short', month: 'short', day: 'numeric' };
+    return new Date(date).toLocaleDateString('en-US', options);
+}
+
+// Tambahan: Fungsi untuk memformat waktu
+function formatTime(time) {
+    return new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    });
+}
+
+// Tambahan: Handle responsiveness
+window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const bookingCards = document.querySelectorAll('.booking-card');
+    
+    bookingCards.forEach(card => {
+        if (width <= 768) {
+            card.classList.add('mobile-view');
+        } else {
+            card.classList.remove('mobile-view');
+        }
+    });
+});
+    </script>
+
+</body>
+</html>

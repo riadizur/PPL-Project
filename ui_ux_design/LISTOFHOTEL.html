@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose, Scan, and Pay - Hotel Booking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+        }
+
+        .account-btn {
+            background-color: #ffc107;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .nav a {
+            color: #999;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin: 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #999;
+        }
+
+        /* Search Bar */
+        .search-container {
+            background: white;
+            border-radius: 50px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 30px 0;
+            gap: 20px;
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .search-input-wrapper i {
+            color: #999;
+            margin-right: 10px;
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .date-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+            padding: 0 20px;
+        }
+
+        .guest-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #333;
+        }
+
+        .guest-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        .search-btn {
+            background: #ffc107;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Hotel Grid */
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .hotel-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .hotel-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .hotel-info {
+            padding: 20px;
+            color: #333;
+        }
+
+        .hotel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .hotel-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .star {
+            color: #ffc107;
+        }
+
+        .location {
+            color: #666;
+        }
+
+        .amenities {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .amenity {
+            background: #f5f5f5;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .detail-btn {
+            background: #1a237e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .see-more {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .see-more button {
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 12px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffc107;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-logo {
+            width: 100px;
+        }
+
+        .footer-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+                border-radius: 25px;
+                padding: 20px;
+            }
+
+            .date-selector {
+                border: none;
+                padding: 10px 0;
+                justify-content: center;
+            }
+
+            .hotel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <img src="/api/placeholder/80/80" alt="Logo" class="logo">
+            <button class="account-btn">ACCOUNT</button>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <a href="#">HOMEPAGE</a>
+            <span>></span>
+            <a href="#">LIST APARTEMEN</a>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Choose, Scan, and Pay</h1>
+            <p>Seamless in your pocket</p>
+        </section>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Pilih Kota yang dituju" class="search-input">
+            </div>
+            
+            <div class="date-selector">
+                <span>Check-in</span>
+                <i class="fas fa-arrow-right"></i>
+                <span>Check-out</span>
+            </div>
+            
+            <div class="guest-selector">
+                <i class="fas fa-user"></i>
+                <button class="guest-btn" id="decrease">-</button>
+                <span id="guest-count">2</span>
+                <button class="guest-btn" id="increase">+</button>
+            </div>
+            
+            <button class="search-btn">Search</button>
+        </div>
+
+        <!-- Hotel Grid -->
+        <div class="hotel-grid">
+            <!-- Hotel Card 1 -->
+            <div class="hotel-card">
+                <img src="5.jpg" alt="Palagan Star" class="hotel-image">
+                <div class="hotel-info">
+                    <div class="hotel-header">
+                        <div class="hotel-name">Palagan Star</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star star"></i>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                    <div class="location">Jogja</div>
+                    <div class="amenities">
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                    </div>
+                    <div class="price-section">
+                        <div>
+                            <div>Start From</div>
+                            <div class="price">Rp. 500.000</div>
+                        </div>
+                        <button class="detail-btn">CLICK FOR DETAIL</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Card 2 -->
+            <div class="hotel-card">
+                <img src="7.jpg" alt="Palagan Star" class="hotel-image">
+                <div class="hotel-info">
+                    <div class="hotel-header">
+                        <div class="hotel-name">Palagan Star</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star star"></i>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                    <div class="location">Jogja</div>
+                    <div class="amenities">
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                    </div>
+                    <div class="price-section">
+                        <div>
+                            <div>Start From</div>
+                            <div class="price">Rp. 500.000</div>
+                        </div>
+                        <button class="detail-btn">CLICK FOR DETAIL</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Card 3 -->
+            <div class="hotel-card">
+                <img src="9.jpg" alt="Palagan Star" class="hotel-image">
+                <div class="hotel-info">
+                    <div class="hotel-header">
+                        <div class="hotel-name">Palagan Star</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star star"></i>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                    <div class="location">Jogja</div>
+                    <div class="amenities">
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                    </div>
+                    <div class="price-section">
+                        <div>
+                            <div>Start From</div>
+                            <div class="price">Rp. 500.000</div>
+                        </div>
+                        <button class="detail-btn">CLICK FOR DETAIL</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Card 4 -->
+            <div class="hotel-card">
+                <img src="17.jpg" alt="Palagan Star" class="hotel-image">
+                <div class="hotel-info">
+                    <div class="hotel-header">
+                        <div class="hotel-name">Palagan Star</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star star"></i>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                    <div class="location">Jogja</div>
+                    <div class="amenities">
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                        <span class="amenity">AMENITIES</span>
+                    </div>
+                    <div class="price-section">
+                        <div>
+                            <div>Start From</div>
+                            <div class="price">Rp. 500.000</div>
+                        </div>
+                        <button class="detail-btn">CLICK FOR DETAIL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- See More -->
+        <div class="see-more">
+            <button>Lihat Lainnya</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="/api/placeholder/100/100" alt="Logo" class="footer-logo">
+                <div class="footer-info">
+                    <h3>Tetap bersama kami</h3>
+                    <p>📍 Jakarta, Indonesia</p>
+                    <p>✉️ Hello@Email.com</p>
+                    <p>📞 (+62) 123 456 789</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Person Counter Functionality
+        const minusBtn = document.querySelector('.minus');
+        const plusBtn = document.querySelector('.plus');
+        const countDisplay = document.querySelector('.count');
+
+        let count = 2;
+
+        minusBtn.addEventListener('click', () => {
+            if (count > 1) {
+                count--;
+                countDisplay.textContent = count;
+            }
+        });
+
+        plusBtn.addEventListener('click', () => {
+            count++;
+            countDisplay.textContent = count;
+        });
+
+        // Search Button Functionality
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            const location = document.querySelector('.search-input input').value;
+            // Add search functionality here
+            console.log('Searching for:', location);
+        });
+    </script>
+</body>
+</html>

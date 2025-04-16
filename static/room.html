@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Kamar - Hotelin</title>
+    <link rel="stylesheet" href="room.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Hotelin Logo" class="logo">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="room.html" class="active">Kamar</a>
+                <a href="reservation.html">Reservasi</a>
+                <a href="users.html">Pengguna</a>
+                <a href="reports.html">Laporan & Analisis</a>
+                <a href="html/edit-property.html">Edit Properti</a>
+            </nav>
+
+            <div class="account-section">
+                <img src="images/account.png" alt="Foto Profil" class="account-image">
+                <span class="account-name">Admin1</span>
+                <a href="html/mitra_index.html" class="logout-button">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Manajemen Kamar</h1>
+                
+                <div class="room-controls">
+                    <button class="btn btn-primary" id="addRoomBtn">
+                        <i class="icon-plus"></i> Tambah Kamar
+                    </button>
+                    
+                    <div class="filter-controls">
+                        <select class="room-filter" id="statusFilter">
+                            <option value="all">Semua Status</option>
+                            <option value="available">Tersedia</option>
+                            <option value="occupied">Terpakai</option>
+                            <option value="dirty">Kotor</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <section class="room-table-container">
+                <table class="room-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">Nomor Kamar</th>
+                            <th style="text-align: center;">Tipe Kamar</th>
+                            <th style="text-align: center;">Status</th>
+                            <th style="text-align: center;">Harga per Malam</th>
+                            <th style="text-align: center;">Jumlah Kamar</th>
+                            <th style="text-align: center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">101</td>
+                            <td style="text-align: center;">Standard</td>
+                            <td style="text-align: center;"><span class="status-badge available">Tersedia</span></td>
+                            <td style="text-align: center;">Rp 500.000</td>
+                            <td style="text-align: center;">20</td>
+                            <td class="action-buttons" style="text-align: center;">
+                                <button class="btn btn-edit" title="Edit kamar">
+                                    <i class="icon-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-delete" title="Hapus kamar">
+                                    <i class="icon-trash"></i> Hapus
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">102</td>
+                            <td style="text-align: center;">Deluxe</td>
+                            <td style="text-align: center;"><span class="status-badge occupied">Terpakai</span></td>
+                            <td style="text-align: center;">Rp 750.000</td>
+                            <td style="text-align: center;">15</td>
+                            <td class="action-buttons" style="text-align: center;">
+                                <button class="btn btn-edit" title="Edit kamar">
+                                    <i class="icon-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-delete" title="Hapus kamar">
+                                    <i class="icon-trash"></i> Hapus
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

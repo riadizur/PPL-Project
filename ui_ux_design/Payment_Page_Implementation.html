@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - CVK Park Bosphorus Hotel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a237e;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .account-btn {
+            background: #FFC107;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Booking Summary */
+        .booking-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .room-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .room-title h2 {
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .price {
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+
+        .hotel-info {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hotel-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hotel-address {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .date-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .hotel-icon {
+            font-size: 24px;
+            color: #666;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .payment-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .payment-option:last-child {
+            border-bottom: none;
+        }
+
+        .payment-logo {
+            width: 80px;
+            height: auto;
+        }
+
+        /* Price Details */
+        .price-details {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .total-price {
+            font-weight: bold;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        /* QR Code */
+        .qr-code {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            margin: 20px 0;
+        }
+
+        /* Invoice Button */
+        .invoice-btn {
+            background: #FFC107;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            width: 100%;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #FFC107;
+            padding: 60px 0;
+            margin-top: 60px;
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-logo {
+            width: 100px;
+        }
+
+        .footer-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="/api/placeholder/100/100" alt="Logo" class="logo">
+            <button class="account-btn">ACCOUNT</button>
+        </header>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Booking Summary -->
+                <div class="booking-summary">
+                    <div class="room-title">
+                        <h2>Superior room - 1 double bed or 2 twin beds</h2>
+                        <span class="price">IDR 199K/night</span>
+                    </div>
+                    <div class="hotel-info">
+                        <h3 class="hotel-name">CVK Park Bosphorus Hotel Istanbul</h3>
+                        <p class="hotel-address">Jl. Pancasila, Daerah Istimewa Yogyakarta 55281</p>
+                    </div>
+                    <div class="date-info">
+                        <div>
+                            <p>Thursday, Dec 8</p>
+                            <small>Check-In</small>
+                        </div>
+                        <span class="hotel-icon">🏨</span>
+                        <div>
+                            <p>Friday, Dec 9</p>
+                            <small>Check-Out</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <h3>Select Payment Method</h3>
+                    <div class="payment-option">
+                        <label>
+                            <input type="radio" name="payment" value="bca">
+                            BCA
+                        </label>
+                        <img src="/api/placeholder/80/30" alt="BCA" class="payment-logo">
+                    </div>
+                    <div class="payment-option">
+                        <label>
+                            <input type="radio" name="payment" value="mandiri">
+                            MANDIRI
+                        </label>
+                        <img src="/api/placeholder/80/30" alt="Mandiri" class="payment-logo">
+                    </div>
+                    <div class="payment-option">
+                        <label>
+                            <input type="radio" name="payment" value="bri">
+                            BRI
+                        </label>
+                        <img src="/api/placeholder/80/30" alt="BRI" class="payment-logo">
+                    </div>
+                    <div class="payment-option">
+                        <label>
+                            <input type="radio" name="payment" value="bni">
+                            BNI
+                        </label>
+                        <img src="/api/placeholder/80/30" alt="BNI" class="payment-logo">
+                    </div>
+                    <div class="payment-option">
+                        <label>
+                            <input type="radio" name="payment" value="permata">
+                            PERMATA
+                        </label>
+                        <img src="/api/placeholder/80/30" alt="Permata" class="payment-logo">
+                    </div>
+                    <div class="payment-option">
+                        <label>
+                            <input type="radio" name="payment" value="dana">
+                            DANA PAYMENT
+                        </label>
+                    </div>
+                    <div class="payment-option">
+                        <label>
+                            <input type="radio" name="payment" value="manual">
+                            MANUAL PAYMENT
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Price Details -->
+                <div class="price-details">
+                    <h3>CVK Park Bosphorus Hotel Istanbul</h3>
+                    <p>Superior room - 1 double bed or 2 twin beds</p>
+                    <div class="rating">
+                        <span>4.2</span>
+                        <span>Very Good</span>
+                    </div>
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Base Fare</span>
+                            <span>IDR 199K</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Taxes</span>
+                            <span>IDR 19K</span>
+                        </div>
+                        <div class="price-row total-price">
+                            <span>Total</span>
+                            <span>IDR 218K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Code -->
+                <div class="qr-code">
+                    <img src="/api/placeholder/200/200" alt="QR Code">
+                    <button class="invoice-btn">CHECK YOUR INVOICE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <img src="/api/placeholder/100/100" alt="Logo" class="footer-logo">
+                <div class="footer-info">
+                    <h3>Tetap bersama kami</h3>
+                    <p>📍 Jakarta, Indonesia</p>
+                    <p>✉️ Hello@Email.com</p>
+                    <p>📞 (+62) 123 456 789</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle payment method selection
+        const paymentOptions = document.querySelectorAll('input[name="payment"]');
+        paymentOptions.forEach(option => {
+            option.addEventListener('change', function() {
+                console.log('Selected payment method:', this.value);
+            });
+        });
+
+        // Handle invoice button click
+        document.querySelector('.invoice-btn').addEventListener('click', function() {
+            console.log('Checking invoice...');
+            // Add invoice checking functionality here
+        });
+    </script>
+</body>
+</html>

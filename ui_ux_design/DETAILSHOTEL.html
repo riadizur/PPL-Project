@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palagan Star - Hotel Detail</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .account-btn {
+            background: #FFC107;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Image Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .side-images {
+            display: grid;
+            gap: 20px;
+        }
+
+        .side-image {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        /* Hotel Info */
+        .hotel-title {
+            font-size: 36px;
+            margin: 30px 0 10px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .rating i {
+            color: #FFC107;
+        }
+
+        .location {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Facilities */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .facility-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .facility-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .facility-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .facility-item i {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .see-all-facilities {
+            color: #FFC107;
+            text-decoration: none;
+            display: block;
+            margin: 20px 0;
+        }
+
+        /* Room Cards */
+        .room-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: 300px 1fr auto;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .room-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .room-info h3 {
+            margin-bottom: 15px;
+        }
+
+        .room-specs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .room-spec {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .room-facilities {
+            margin-top: 15px;
+        }
+
+        .room-facilities h4 {
+            margin-bottom: 10px;
+        }
+
+        .room-facility-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .room-price {
+            text-align: right;
+        }
+
+        .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .price-note {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+        }
+
+        .book-btn {
+            background: #FFC107;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: #FFC107;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-logo {
+            width: 100px;
+        }
+
+        .footer-info h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            color: white;
+            margin: 10px 0;
+        }
+
+        .see-more {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .see-more-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .room-card {
+                grid-template-columns: 1fr;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="/api/placeholder/100/100" alt="QR Code" class="logo">
+            <button class="account-btn">ACCOUNT</button>
+        </header>
+
+        <!-- Image Gallery -->
+        <div class="gallery">
+            <img src="17.jpg" alt="Main Room" class="main-image">
+            <div class="side-images">
+                <img src="17.jpg" alt="Hotel Exterior" class="side-image">
+                <img src="10.jpg" alt="Hotel Interior" class="side-image">
+            </div>
+        </div>
+
+        <!-- Hotel Info -->
+        <h1 class="hotel-title">PALAGAN STAR</h1>
+        <div class="rating">
+            <i class="fas fa-star"></i>
+            <span>4.3/5</span>
+        </div>
+        <p class="location">Jakarta Pusat</p>
+        <p class="description">
+            Selamat datang di "Hotel Indonesia" Hotel mewah di tengah jantung 
+            kota yang menawarkan pengalaman tinggal yang serba modern dan 
+            penuh kenyamanan.
+        </p>
+        <p class="description">
+            Dengan desain interior yang elegan, setiap kamar apartemen kami 
+            dirancang untuk memadukan keindahan estetika dengan 
+            fungsionalitas yang optimal.
+        </p>
+
+        <!-- Facilities -->
+        <div class="facilities-grid">
+            <div class="facility-section">
+                <h3>Fasilitas Tersedia</h3>
+                <div class="facility-list">
+                    <div class="facility-item">
+                        <i class="fas fa-broom"></i>
+                        <span>Pemanas ruangan dan ruang kerja</span>
+                    </div>
+                    <div class="facility-item">
+                        <i class="fas fa-snowflake"></i>
+                        <span>Ruangan Ber AC</span>
+                    </div>
+                    <div class="facility-item">
+                        <i class="fas fa-elevator"></i>
+                        <span>Elevator</span>
+                    </div>
+                    <div class="facility-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Layanan Tiap Saat</span>
+                    </div>
+                </div>
+                <a href="#" class="see-all-facilities">Lihat semua fasilitas</a>
+            </div>
+            <div class="facility-section">
+                <h3>The Sonder standard</h3>
+                <div class="facility-list">
+                    <div class="facility-item">
+                        <i class="fas fa-key"></i>
+                        <span>Check-in Password</span>
+                    </div>
+                    <div class="facility-item">
+                        <i class="fas fa-wifi"></i>
+                        <span>WIFI Cepat</span>
+                    </div>
+                    <div class="facility-item">
+                        <i class="fas fa-broom"></i>
+                        <span>Kebersihan Profesional</span>
+                    </div>
+                    <div class="facility-item">
+                        <i class="fas fa-box"></i>
+                        <span>Perlengkapan Lengkap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Cards -->
+        <div class="room-section">
+            <!-- Single Room -->
+            <div class="room-card">
+                <img src="1.jpg" alt="Single Room" class="room-image">
+                <div class="room-info">
+                    <h3>Single Room</h3>
+                    <div class="room-specs">
+                        <span class="room-spec">
+                            <i class="fas fa-bed"></i>
+                            1 Tempat tidur
+                        </span>
+                        <span class="room-spec">
+                            <i class="fas fa-user"></i>
+                            1 Pengunjung
+                        </span>
+                        <span class="room-spec">
+                            <i class="fas fa-bath"></i>
+                            1 Kamar mandi
+                        </span>
+                        <span class="room-spec">
+                            <i class="fas fa-ruler"></i>
+                            67 Sq ft
+                        </span>
+                    </div>
+                    <div class="room-facilities">
+                        <h4>Tersedia Fasilitas :</h4>
+                        <div class="room-facility-list">
+                            <span>• Twin bed</span>
+                            <span>• Cable TV</span>
+                            <span>• Air Conditioning</span>
+                            <span>• Streaming device</span>
+                            <span>• Television</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-price">
+                    <p>Start From</p>
+                    <p class="price-amount">Rp. 500.000</p>
+                    <p class="price-note">Harga termasuk pajak</p>
+                    <button class="book-btn">Tentukan tanggal</button>
+                </div>
+            </div>
+
+            <!-- Double Room -->
+            <div class="room-card">
+                <!-- Similar structure to Single Room -->
+            </div>
+
+            <!-- Premium Room -->
+            <div class="room-card">
+                <!-- Similar structure to Single Room -->
+            </div>
+        </div>
+
+        <!-- See More Button -->
+        <div class="see-more">
+            <button class="see-more-btn">Lihat Lainnya</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <img src="/api/placeholder/100/100" alt="QR Code" class="footer-logo">
+                <div class="footer-info">
+                    <h3>Tetap bersama kami</h3>
+                    <p>📍 Jakarta, Indonesia</p>
+                    <p>✉️ Hello@Email.com</p>
+                    <p>📞 (+62) 123 456 789</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

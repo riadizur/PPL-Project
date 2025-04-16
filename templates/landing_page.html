@@ -1,0 +1,214 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+        rel="stylesheet"
+        as="style"
+        onload="this.rel='stylesheet'"
+        href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+    />
+    <title>One-stop Solutions Hotel App</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="fixed top-0 left-0 right-0 flex items-center justify-between border-b border-[#F4EFE6] px-6 md:px-10 py-3 bg-white">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-4 text-[#1C160C]">
+                        <div class="size-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="40" height="40" style="margin-top: -10;">
+                                <!-- Background building silhouette -->
+                                <rect x="5" y="10" width="15" height="10" rx="2" fill="#2C3E50"/>
+                                <!-- Window elements -->
+                                <rect x="6" y="11" width="3" height="3" rx="1" fill="#ECF0F1"/>
+                                <rect x="10" y="11" width="3" height="3" rx="1" fill="#ECF0F1"/>
+                                <rect x="14" y="11" width="3" height="3" rx="1" fill="#ECF0F1"/>
+                                <!-- Door -->
+                                <rect x="9" y="15" width="7" height="7" rx="1" fill="#3498DB"/>
+                                <!-- Roof -->
+                                <path d="M2 10 L12 2 L22 10" fill="none" stroke="#E74C3C" stroke-width="1"/>
+                                <!-- Moon element -->
+                                <circle cx="20" cy="4" r="2" fill="#F1C40F"/>
+                                <!-- Bed icon -->
+                                <path d="M6 17 Q6 15 8 15 L10 15 Q12 15 12 17" fill="none" stroke="#3498DB" stroke-width="1"/>
+                                <rect x="7" y="17" width="5" height="0.5" fill="#3498DB"/>
+                            </svg>              
+                        </div>
+                        <h2 class="text-[#1C160C] text-lg font-bold leading-tight" style="margin-top:15px;">&nbsp;&nbsp;DailyRoom</h2>
+                    </div>
+                </div>
+                <div class="flex flex-1 justify-end gap-6">
+                  <div class="nav-links flex items-center gap-6">
+                      <a class="text-[#1C160C] text-sm font-medium" href="/">For You</a>
+                      <a class="text-[#1C160C] text-sm font-medium" href="/">Luxury Room</a>
+                      <a class="text-[#1C160C] text-sm font-medium" href="/">VVIP</a>
+                      <a class="text-[#1C160C] text-sm font-medium" href="/">Events</a>
+                  </div>
+                  <div class="flex gap-2">
+                      <button class="booking-button flex items-center justify-center rounded-full h-10 px-4 bg-[#019863] text-[#FFFFFF] text-sm font-bold transition hover:bg-[#017855]" onclick="window.open('/login','__self');">
+                          <span class="truncate">Booking NOW!</span>
+                      </button>
+                      <button class="login-button flex items-center justify-center rounded-full h-10 px-4 bg-[#F4EFE6] text-[#1C160C] text-sm font-bold transition hover:bg-[#E1D4B3]" onclick="window.open('/login','__self');">
+                          <span class="truncate">Login</span>
+                      </button>
+                  </div>
+              </div>
+            </header>
+            <div style="margin-top:40px;"></div>
+            <div class="px-6 md:px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1 rounded-xl">
+                    <div class="px-4 py-3">
+                        <div class="bg-cover bg-center h-40 mb-4 rounded-xl" style="background-image: url('static/images/banner.png');">
+                            <div class="flex items-center justify-center h-full bg-black bg-opacity-50 rounded-xl">
+                                <span class="text-white text-2xl font-bold">Get Amazing Hotel Discounts...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="text-[#1C160C] tracking-light text-2xl font-bold leading-tight px-4 text-left pb-3 pt-6">Available Rooms for You</h1>
+                    <div class="px-4 py-3">
+                        <label class="flex flex-col h-12 w-full">
+                          <div class="flex w-full items-stretch rounded-xl h-full mb-4">
+                              <div class="text-[#A18249] flex bg-[#F4FFF6] items-center justify-center pl-4 rounded-l-xl border-r-0">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                                      <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                                  </svg>
+                              </div>
+                              <input
+                                  id="Search"
+                                  placeholder="Search for hotel names or location"
+                                  class="form-input flex w-full h-full rounded-r-xl text-[#1C160C] focus:outline-none focus:ring-0 border-none bg-[#F4FFF6] placeholder:text-[#318249] px-4"
+                              />&nbsp;&nbsp;
+                              <input id="datePicker" class="form-input rounded-xl bg-[#F4FFF6]" placeholder="Start Date">&nbsp;&nbsp;
+                              <input id="datePicker" class="form-input rounded-xl bg-[#F4FFF6]" placeholder="End Date">&nbsp;&nbsp;
+                              <button class="search-button flex items-center justify-center rounded-xl h-10 px-4 bg-[#019863] text-[#FFFFFF] text-sm font-bold transition hover:bg-[#017855]">
+                                <span class="truncate">EXPLORE</span>
+                            </button>
+                          </div>
+                      </label>
+                    </div>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <!-- Content for the grid can be added here -->
+                    </div>
+                    <div class="flex justify-center py-4">
+                        <button id="loadMoreButton" class="bg-[#019863] text-[#FFFFFF] rounded-lg px-6 py-2 text-sm font-bold transition hover:bg-[#017855]">
+                            Load More...
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Structure -->
+            <div id="hotelModal" class="modal justify-end bg-cover bg-center h-40 mb-4 rounded-xl" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-image" id="modalImage"></div>
+                    <strong><h2 id="modalName"></h2></strong>
+                    <h3><strong>Description:</strong></h3>
+                    <p id="modalDescription"></p>
+                    <h3><strong>Facilities:</strong></h3>
+                    <ul id="modalFacilities"></ul>
+                    <br>
+                    <div class="flex flex-1 justify-end gap-6">
+                        <div class="flex gap-2">
+                            <button id="modalClose" class="flex items-center justify-center rounded-full h-10 px-4 bg-[#F42F26] text-[#1C160C] text-sm font-bold transition hover:bg-[#F19473]">
+                                <span class="truncate">Close</span>
+                            </button>
+                            <button class="flex items-center justify-center rounded-full h-10 px-4 bg-[#019863] text-[#FFFFFF] text-sm font-bold transition hover:bg-[#017855]" onclick="window.open('/login','__self');">
+                                <span class="truncate">Booking NOW!</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        // JavaScript for modal functionality
+        const modal = document.getElementById("hotelModal");
+        const closeModal = document.getElementById("modalClose");
+
+        function showModal(name, description, facilities, imageUrl) {
+            document.getElementById("modalName").innerText = name;
+            document.getElementById("modalDescription").innerText = description;
+            document.getElementById("modalFacilities").innerHTML = facilities.map(item => `<li>${item}</li>`).join('');
+            document.getElementById("modalImage").style.backgroundImage = `url(${imageUrl})`;
+            modal.style.display = "flex";
+        }
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        };
+      </script> -->
+      <style>
+        @media (max-width: 640px) { /* Adjust the max-width value as needed */
+        .nav-links {
+            display: none; /* Hide navigation links on mobile */
+        }
+
+        .booking-button {
+            display: none; /* Hide Booking NOW! button on mobile */
+        }
+
+        .login-button {
+            display: flex; /* Show Login button on mobile */
+        }
+    }
+
+    @media (min-width: 641px) { /* Ensure buttons are visible on larger screens */
+        .booking-button {
+            display: flex; /* Show Booking NOW! button on larger screens */
+        }
+
+        .login-button {
+            display: flex; /* Show Login button on larger screens */
+        }
+    }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /*Stay in place*/
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+  
+        /* Modal content */
+        .modal-content {
+            background-color: #fff; /* White background for content */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Some padding */
+            max-width: 500px; /* Maximum width */
+            width: 90%; /* Responsive width */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+  
+      .modal-image {
+          width: 100%;
+          height: 200px;
+          background-size: cover;
+          background-position: center;
+      }
+  
+      .close {
+          cursor: pointer;
+          font-size: 20px;
+          position: absolute;
+          right: 10px;
+          top: 10px;
+      }
+      </style>
+      <script src="/static/js/hotels.js"></script>
+      <script>
+        flatpickr("#datePicker", {
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+    </script>
+  </body>
+</html>

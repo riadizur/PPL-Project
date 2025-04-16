@@ -1,0 +1,10 @@
+fastapi==0.95.1
+uvicorn==0.22.0
+sqlalchemy==2.0.15
+pydantic==1.10.9
+python-jose==3.3.0  # For JWT creation and validation
+passlib[bcrypt]==1.7.4  # For password hashing
+email-validator==1.1.3  # For validating email addresses
+python-dotenv==1.0.0  # For reading environment variables (optional)
+python-multipart
+# sqlite==3.41.2  # For SQLite, if needed (usually comes with Python)

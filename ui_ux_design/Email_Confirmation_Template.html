@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - HTelin</title>
+    <style>
+        /* Reset styles for email clients */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333333;
+        }
+
+        /* Container */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+
+        /* Header */
+        .email-header {
+            background: #017BFE;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .email-header img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            font-size: 24px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Content */
+        .email-content {
+            padding: 30px;
+        }
+
+        .greeting {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .booking-number {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .booking-id {
+            font-size: 18px;
+            color: #017BFE;
+            font-weight: bold;
+        }
+
+        /* Booking Details */
+        .booking-details {
+            margin-bottom: 30px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .detail-label {
+            color: #6c757d;
+            font-weight: bold;
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Price Summary */
+        .price-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .total-row {
+            border-top: 2px solid #dee2e6;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Action Button */
+        .action-button {
+            display: block;
+            background: #017BFE;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+
+        /* Footer */
+        .email-footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .contact-info {
+            margin: 20px 0;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: #017BFE;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Hotel Policies */
+        .hotel-policies {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .policy-item {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100%;
+            }
+
+            .email-content {
+                padding: 20px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="email-header">
+            <img src="assets/logo-white.png" alt="HTelin Logo">
+            <h1 class="header-title">Booking Confirmation</h1>
+            <p>Thank you for choosing HTelin</p>
+        </div>
+
+        <!-- Content -->
+        <div class="email-content">
+            <p class="greeting">Dear John Doe,</p>
+            <p>Your booking has been confirmed successfully!</p>
+
+            <div class="booking-number">
+                <p>Booking ID</p>
+                <p class="booking-id">BOOK-2024001</p>
+            </div>
+
+            <!-- Booking Details -->
+            <div class="booking-details">
+                <h2>Booking Details</h2>
+                <div class="detail-row">
+                    <span class="detail-label">Room Type</span>
+                    <span>Deluxe Room</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Check-in Date</span>
+                    <span>Oct 28, 2024 (2:00 PM)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Check-out Date</span>
+                    <span>Oct 30, 2024 (12:00 PM)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Duration</span>
+                    <span>2 Nights</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Guests</span>
+                    <span>2 Adults</span>
+                </div>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="qr-section">
+                <h3>Your Check-in QR Code</h3>
+                <p>Use this QR code for contactless check-in</p>
+                <div class="qr-code">
+                    <!-- QR Code will be generated dynamically -->
+                    <img src="assets/qr-code.png" alt="Check-in QR Code">
+                </div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="price-summary">
+                <h2>Price Summary</h2>
+                <div class="price-row">
+                    <span>Room Rate (2 nights)</span>
+                    <span>Rp 2.000.000</span>
+                </div>
+                <div class="price-row">
+                    <span>Taxes & Fees</span>
+                    <span>Rp 200.000</span>
+                </div>
+                <div class="price-row total-row">
+                    <span>Total Amount</span>
+                    <span>Rp 2.200.000</span>
+                </div>
+            </div>
+
+            <!-- Hotel Policies -->
+            <div class="hotel-policies">
+                <h2>Important Information</h2>
+                <div class="policy-item">
+                    <strong>Check-in Time:</strong> 2:00 PM
+                </div>
+                <div class="policy-item">
+                    <strong>Check-out Time:</strong> 12:00 PM
+                </div>
+                <div class="policy-item">
+                    <strong>Required Documents:</strong> Valid ID and Credit Card
+                </div>
+                <div class="policy-item">
+                    <strong>Cancellation Policy:</strong> Free cancellation until 24 hours before check-in
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <a href="#" class="action-button">View Booking Details</a>
+
+            <p>If you have any questions or need assistance, please don't hesitate to contact us.</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <div class="contact-info">
+                <p>HTelin Hotels & Resorts</p>
+                <p>123 Hotel Street, City</p>
+                <p>Phone: +62 123 4567 890</p>
+                <p>Email: support@htelin.com</p>
+            </div>
+
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+
+            <p>© 2024 HTelin. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

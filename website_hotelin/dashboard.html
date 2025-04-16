@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hotelin</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Hotelin Logo" class="logo">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="room.html">Kamar</a>
+                <a href="reservation.html">Reservasi</a>
+                <a href="users.html">Pengguna</a>
+                <a href="reports.html">Laporan & Analisis</a>
+            </nav>
+
+            <div class="account-section">
+                <img src="images/account.png" alt="Foto Profil" class="account-image">
+                <span class="account-name">Admin1</span>
+                <a href="#" class="logout-button">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>DASHBOARD <span>Selamat Datang</span></h1>
+            </header>
+
+            <!-- Room Status Cards -->
+            <section class="room-status">
+                <div class="status-card available">
+                    <div class="status-content">
+                        <h3>Kamar Tersedia</h3>
+                        <p class="status-number">20</p>
+                    </div>
+                </div>
+
+                <div class="status-card occupied">
+                    <div class="status-content">
+                        <h3>Kamar Terpakai</h3>
+                        <p class="status-number">15</p>
+                    </div>
+                </div>
+
+                <div class="status-card dirty">
+                    <div class="status-content">
+                        <h3>Kamar Kotor</h3>
+                        <p class="status-number">5</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Guest Tables -->
+            <section class="dashboard-tables">
+                <div class="table-card">
+                    <h2>Tamu yang sedang menginap</h2>
+                    <div class="table-responsive">
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Carlos</td>
+                                    <td>14.00 (28/10/24)</td>
+                                    <td>12.00 (30/10/24)</td>
+                                </tr>
+                                <tr>
+                                    <td>Yanto</td>
+                                    <td>01.00 (29/10/24)</td>
+                                    <td>12.00 (29/10/24)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <h2>Tamu Check-out Hari ini</h2>
+                    <div class="table-responsive">
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Check-Out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Yanto</td>
+                                    <td>12.00 (29/10/24)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Info Box -->
+            <section class="info-box">
+                <h2>Berita/Info Internal</h2>
+                <div class="info-content">
+                    <div class="info-message">
+                        <span class="info-author">Admin1</span>
+                        <span class="info-time">10.21</span>
+                        <p class="info-text">Kamar no 13 air keran mati</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

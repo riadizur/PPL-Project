@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasi - Hotelin</title>
+    <link rel="stylesheet" href="reservation.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Hotelin Logo" class="logo">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="room.html">Kamar</a>
+                <a href="reservation.html" class="active">Reservasi</a>
+                <a href="users.html">Pengguna</a>
+                <a href="reports.html">Laporan & Analisis</a>
+            </nav>
+
+            <div class="account-section">
+                <img src="images/account.png" alt="Foto Profil" class="account-image">
+                <span class="account-name">Admin1</span>
+                <a href="#" class="logout-button">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Manajemen Reservasi</h1>
+                
+                <div class="reservation-controls">
+                    <button class="btn btn-primary" id="addReservationBtn">
+                        <i class="icon-plus"></i> Tambah Reservasi Baru
+                    </button>
+                    
+                    <div class="filter-controls">
+                        <input type="date" class="date-filter" id="dateFilter">
+                        <select class="status-filter" id="statusFilter">
+                            <option value="all">Semua Status</option>
+                            <option value="confirmed">Terkonfirmasi</option>
+                            <option value="checked-in">Check In</option>
+                            <option value="checked-out">Check Out</option>
+                            <option value="cancelled">Dibatalkan</option>
+                        </select>
+                        <input type="text" class="search-filter" placeholder="Cari nama/nomor kamar...">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Reservation Summary Cards -->
+            <section class="reservation-summary">
+                <div class="summary-card upcoming">
+                    <h3>Check-in Hari Ini</h3>
+                    <p class="summary-number">5</p>
+                </div>
+                <div class="summary-card ongoing">
+                    <h3>Sedang Menginap</h3>
+                    <p class="summary-number">12</p>
+                </div>
+                <div class="summary-card checkout">
+                    <h3>Check-out Hari Ini</h3>
+                    <p class="summary-number">3</p>
+                </div>
+            </section>
+
+            <!-- Reservation Table -->
+            <section class="reservation-table-container">
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="reservation-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Reservasi</th>
+                                    <th>Nama Tamu</th>
+                                    <th>No. Kamar</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Status</th>
+                                    <th>Total Bayar</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>RES001</td>
+                                    <td>John Doe</td>
+                                    <td>101</td>
+                                    <td>03/11/2024 14:00</td>
+                                    <td>05/11/2024 12:00</td>
+                                    <td><span class="status-badge confirmed">Terkonfirmasi</span></td>
+                                    <td>Rp 1.000.000</td>
+                                    <td class="action-buttons">
+                                        <button class="btn btn-check-in" title="Check In">
+                                            <i class="icon-login"></i>
+                                        </button>
+                                        <button class="btn btn-edit" title="Edit">
+                                            <i class="icon-edit"></i>
+                                        </button>
+                                        <button class="btn btn-delete" title="Hapus">
+                                            <i class="icon-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RES002</td>
+                                    <td>Jane Smith</td>
+                                    <td>205</td>
+                                    <td>02/11/2024 15:00</td>
+                                    <td>03/11/2024 12:00</td>
+                                    <td><span class="status-badge checked-in">Check In</span></td>
+                                    <td>Rp 750.000</td>
+                                    <td class="action-buttons">
+                                        <button class="btn btn-check-out" title="Check Out">
+                                            <i class="icon-logout"></i>
+                                        </button>
+                                        <button class="btn btn-edit" title="Edit">
+                                            <i class="icon-edit"></i>
+                                        </button>
+                                        <button class="btn btn-delete" title="Hapus">
+                                            <i class="icon-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reservation Form Modal -->
+            <div class="modal" id="reservationModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Tambah Reservasi Baru</h2>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="reservation-form">
+                            <div class="form-group">
+                                <label for="guestName">Nama Tamu</label>
+                                <input type="text" id="guestName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="identityNumber">No. Identitas</label>
+                                <input type="text" id="identityNumber" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">No. Telepon</label>
+                                <input type="tel" id="phoneNumber" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="checkIn">Check-in</label>
+                                    <input type="datetime-local" id="checkIn" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkOut">Check-out</label>
+                                    <input type="datetime-local" id="checkOut" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="roomType">Tipe Kamar</label>
+                                <select id="roomType" required>
+                                    <option value="">Pilih Tipe Kamar</option>
+                                    <option value="standard">Standard</option>
+                                    <option value="deluxe">Deluxe</option>
+                                    <option value="suite">Suite</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="roomNumber">Nomor Kamar</label>
+                                <select id="roomNumber" required>
+                                    <option value="">Pilih Nomor Kamar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Catatan</label>
+                                <textarea id="notes" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="cancelBtn">Batal</button>
+                        <button class="btn btn-primary" id="saveBtn">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

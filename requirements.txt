@@ -1,0 +1,10 @@
+Flask==2.2.3               # Web framework
+Flask-Bcrypt==1.0.1
+Flask-SQLAlchemy==2.5.1    # ORM for database interaction
+SQLAlchemy==1.4.47         # Ensure this is compatible
+Flask-Migrate==3.1.0       # Database migration tool
+Flask-Cors==3.0.10         # Cross-Origin Resource Sharing
+Flask-RESTful==0.3.9       # Extension for building REST APIs
+gunicorn==20.1.0           # WSGI server for production
+python-dotenv==0.21.0      # Environment variable management
+Werkzeug>=2.2.2

@@ -1,0 +1,169 @@
+<!-- Style untuk semua halaman auth -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background-color: #1a237e;
+    }
+
+    .auth-page {
+        padding: 40px;
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .form-container {
+        flex: 1;
+        max-width: 400px;
+    }
+
+    .qr-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 40px;
+    }
+
+    .auth-title {
+        color: white;
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .auth-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        background: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .checkbox-group label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 12px;
+        background: #ffc107;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+
+    .auth-link {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+    }
+
+    .auth-link a {
+        color: #ffc107;
+        text-decoration: none;
+    }
+
+    .image-container {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-left: 40px;
+    }
+
+    .hotel-image {
+        width: 400px;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .dots-container {
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+        gap: 4px;
+    }
+
+    .dot {
+        width: 6px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+    }
+
+    .dot.active {
+        background: white;
+    }
+
+    @media (max-width: 768px) {
+        .auth-page {
+            padding: 20px;
+        }
+
+        .image-container {
+            display: none;
+        }
+    }
+</style>
+
+<!-- verify-code.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Code - HTelin</title>
+</head>
+<body>
+    <div class="auth-page">
+        <div class="form-container">
+            <img src="assets/qr-code.png" alt="QR Code" class="qr-logo">
+            <h1 class="auth-title">Verify code</h1>
+            <p class="auth-subtitle">We sent verification code to your email.</p>
+            
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Enter verification code">
+                </div>
+
+                <button type="submit" class="submit-button">Verify Code</button>
+                
+                <div class="auth-link">
+                    <a href="login.html">Back to Login</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="image-container">
+            <img src="16.jpg" alt="Hotel View" class="hotel-image">
+        </div>
+    </div>
+</body>
+</html>

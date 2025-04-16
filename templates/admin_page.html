@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="relative flex size-full min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+        <div class="layout-container flex h-full grow flex-col">
+          <header class="flex items-center justify-between border-b border-[#F4EFE6] px-6 md:px-10 py-3">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-4 text-[#1C160C]">
+                    <div class="size-4">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_6_330)">
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
+                            fill="currentColor"
+                        ></path>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_6_330"><rect width="48" height="48" fill="white"></rect></clipPath>
+                        </defs>
+                    </svg>
+                    </div>
+                    <h2 class="text-[#1C160C] text-lg font-bold leading-tight">Career-Hiring Day</h2>
+                </div>
+                <label class="flex min-w-40 max-w-64 h-10">
+                    <div class="flex w-full items-stretch rounded-xl h-full">
+                    <div class="text-[#A18249] flex bg-[#F4EFE6] items-center justify-center pl-4 rounded-l-xl border-r-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                        </svg>
+                    </div>
+                    <input
+                        placeholder="Search"
+                        class="form-input flex w-full h-full rounded-r-xl text-[#1C160C] focus:outline-none focus:ring-0 border-none bg-[#F4EFE6] placeholder:text-[#A18249] px-4"
+                    />
+                    </div>
+                </label>
+            </div>
+            <div class="flex flex-1 justify-end gap-6">
+                <div class="flex items-center gap-6">
+                    <a class="text-[#1C160C] text-sm font-medium" href="/">For You</a>
+                    <a class="text-[#1C160C] text-sm font-medium" href="/">Remote</a>
+                    <a class="text-[#1C160C] text-sm font-medium" href="/">Engineering</a>
+                    <a class="text-[#1C160C] text-sm font-medium" href="/">Design</a>
+                    <a class="text-[#1C160C] text-sm font-medium" href="/">Home</a>
+                </div>
+                <div class="flex gap-2">
+                    <button class="flex items-center justify-center rounded-full h-10 px-4 bg-[#019863] text-[#FFFFFF] text-sm font-bold transition hover:bg-[#017855]">
+                    <span class="truncate">Post a job</span>
+                    </button>
+                </div>
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://cdn.usegalileo.ai/stability/2f075930-ffd6-4841-9270-99cc6e9d54ee.png");'></div>
+                </div>
+            </div
+            </header>
+            <div class="flex">
+                <!-- Sidebar -->
+                <div class="w-64 bg-gray-200 h-screen p-5">
+                    <nav class="space-y-4">
+                        <a href="/" class="block text-gray-700 hover:text-blue-500">Home</a>
+                        <a href="#" onclick="hide_page();document.getElementById('interview').classList.remove('hidden');" class="block text-gray-700 hover:text-blue-500">Interviews</a>
+                        <a href="#" onclick="hide_page();document.getElementById('job-post').classList.remove('hidden');" class="block text-gray-700 hover:text-blue-500">Job Posted</a>
+                        <a href="#" onclick="hide_page();document.getElementById('people').classList.remove('hidden');" class="block text-gray-700 hover:text-blue-500">People</a>
+                        <a href="#" onclick="hide_page();document.getElementById('insights').classList.remove('hidden');"class="block text-gray-700 hover:text-blue-500">Insights</a>
+                    </nav>
+                </div>
+                <div class="page" id="interview">
+                    <!-- Main Content -->
+                    <div class="flex-1 p-10">
+                    <!-- Create Event Button -->
+                    <a href="#" class="inline-block bg-green-500 text-white px-6 py-2 rounded-lg mb-6 hover:bg-green-600">
+                        Add Schedule
+                    </a>
+
+                    <!-- Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/93c3944e-961e-4e9b-802c-2b578c45e8d4.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Software Engineer</h3>
+                        <p class="text-gray-500">April 5, 2023 | 6:00 PM - 7:00 PM</p>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button onclick="window.open('/interview','__self');" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Start Interview</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">Upcoming Interview</h1>
+
+                    <!-- Upcoming Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/6a369d03-401b-4bd0-99ce-f5b91efd71d1.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Full-Stack Developer</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/sdxl10/a1ce2868-e12e-48a9-be63-690a47edf30c.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Data Analyst</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/c396fcb4-8622-4666-a290-588e69eceae4.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Product Designer</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">Recent Interview</h1>
+
+                    <!-- Recent Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/sdxl10/9d216f12-bf8d-4a17-8700-a7abd881d006.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Quality Assurrance</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Results</button>
+                    </div>
+                </div>
+                </div>
+                <div class="page hidden" id="interview-detail">
+                    <!-- Main Content -->
+                    <div class="flex-1 p-10">
+                    <!-- Create Event Button -->
+                    <a href="#" class="inline-block bg-green-500 text-white px-6 py-2 rounded-lg mb-6 hover:bg-green-600">
+                        Add Schedule
+                    </a>
+
+                    <!-- Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/93c3944e-961e-4e9b-802c-2b578c45e8d4.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Software Engineer</h3>
+                        <p class="text-gray-500">April 5, 2023 | 6:00 PM - 7:00 PM</p>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">Upcoming Interview</h1>
+
+                    <!-- Upcoming Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/6a369d03-401b-4bd0-99ce-f5b91efd71d1.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Full-Stack Developer</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/sdxl10/a1ce2868-e12e-48a9-be63-690a47edf30c.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Data Analyst</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/c396fcb4-8622-4666-a290-588e69eceae4.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Product Designer</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">Recent Interview</h1>
+
+                    <!-- Recent Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/sdxl10/9d216f12-bf8d-4a17-8700-a7abd881d006.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Quality Assurrance</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Start Interview</button>
+                    </div>
+                </div>
+                </div>
+                <div class="page hidden" id="job-post">
+                    <!-- Main Content -->
+                    <div class="flex-1 p-10">
+                    <!-- Create Event Button -->
+                    <a href="#" class="inline-block bg-green-500 text-white px-6 py-2 rounded-lg mb-6 hover:bg-green-600">
+                        Post A Job
+                    </a>
+
+                    <!-- Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/93c3944e-961e-4e9b-802c-2b578c45e8d4.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Software Engineer</h3>
+                        <p class="text-gray-500">April 5, 2023 | 6:00 PM - 7:00 PM</p>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">Upcoming Interview</h1>
+
+                    <!-- Upcoming Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/6a369d03-401b-4bd0-99ce-f5b91efd71d1.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Full-Stack Developer</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/sdxl10/a1ce2868-e12e-48a9-be63-690a47edf30c.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Data Analyst</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/c396fcb4-8622-4666-a290-588e69eceae4.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Product Designer</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">Recent Interview</h1>
+
+                    <!-- Recent Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/sdxl10/9d216f12-bf8d-4a17-8700-a7abd881d006.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Quality Assurrance</h3>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="document.getElementById('job-post-detail').classList.remove('hidden');">Details</button>
+                    </div>
+                </div>
+                </div>
+                <div class="page hidden" id="job-post-detail">
+                    <iframe src="/static/html/detail_job.html" width="180%" height="100%"></iframe>
+                </div>
+                <div class="page hidden" id="people">
+                    <!-- Main Content -->
+                    <div class="flex-1 p-10">
+                    <!-- Create Event Button -->
+                    <a href="#" class="inline-block bg-green-500 text-white px-6 py-2 rounded-lg mb-6 hover:bg-green-600">
+                        Add People
+                    </a>
+
+                    <!-- Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="https://cdn.usegalileo.ai/stability/93c3944e-961e-4e9b-802c-2b578c45e8d4.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Software Engineer</h3>
+                        <p class="text-gray-500">April 5, 2023 | 6:00 PM - 7:00 PM</p>
+                        <p class="text-gray-500">1,200 registrants</p>
+                        </div>
+                        <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Check Registrants</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">All Registrants</h1>
+
+                    <!-- Upcoming Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="/static/images/me-photo.jpeg" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Marta Zuriadi</h3>
+                        <p class="text-gray-500">Software Engineer</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="/static/images/zuri.jpg" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Martin Petrov</h3>
+                        <p class="text-gray-500">Full-Stack Developer</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Details</button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center justify-between">
+                        <img src="/static/images/zuri.png" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Malik Azzuri</h3>
+                        <p class="text-gray-500">Product Designer</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Details</button>
+                    </div>
+
+                    <!-- Section Heading -->
+                    <h1 class="text-2xl font-semibold mb-6">Recent Interview</h1>
+
+                    <!-- Recent Event Cards -->
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+                        <img src="/static/images/me-photo.jpeg" alt="Event Image" class="rounded-md w-32 h-24 object-cover">
+                        <div class="ml-6 flex-grow">
+                        <h3 class="text-lg font-semibold">Marta Zuriadi</h3>
+                        <p class="text-gray-500">Software Engineer</p>
+                        </div>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Details</button>
+                    </div>
+                </div>
+                </div>
+                <div class="page hidden" id="insights">
+                    <iframe src="/static/html/insights.html" width="380%" height="100%"></iframe>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function hide_page(){
+        var elements = document.getElementsByClassName("page");
+    
+        // Loop through the elements and add a new class
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].classList.add("hidden");
+        }
+    }
+</script>
+</body>
+</html>

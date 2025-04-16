@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Properti - Hotelin</title>
+    <link rel="stylesheet" href="../room.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/logo.png" alt="Hotelin Logo" class="logo">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../dashboard.html">Dashboard</a>
+                <a href="../room.html" >Kamar</a>
+                <a href="../reservation.html">Reservasi</a>
+                <a href="../users.html">Pengguna</a>
+                <a href="../reports.html">Laporan & Analisis</a>
+                <a href="html/edit-property.html" class="active">Edit Properti</a>
+            </nav>
+
+            <div class="account-section">
+                <img src="../images/account.png" alt="Foto Profil" class="account-image">
+                <span class="account-name">Admin1</span>
+                <a href="mitra_index.html" class="logout-button">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Edit Properti</h1>
+                
+                <div class="room-controls" style="display: flex; justify-content: center;">
+                    <form id="property-form" role="form">
+                        <div style="border: 5px solid #0d1a65; padding: 20px; margin-bottom: 20px; border-radius: 5px;">
+                            <h2 class="text-center">Informasi Umum</h2>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="form_property_name">Nama Properti</label>
+                                        <input id="form_property_name" type="text" name="Property_name"
+                                            class="form-control" style="width:100%"
+                                            placeholder="Nama Properti" required="required"
+                                            data-error="Bagian ini wajib diisi.">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="form_property_address">Alamat Properti</label>
+                                        <input id="form_property_address" type="text"
+                                            name="property_address" class="form-control" style="width:100%"
+                                            placeholder="Alamat Properti" required="required"
+                                            data-error="Bagian ini wajib diisi.">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="border: 5px solid #0d1a65; padding: 20px; margin-bottom: 20px; border-radius: 5px;">
+                            <h2 class="text-center">Informasi Fasilitas</h2>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckC"
+                                    onchange="sendCheckboxValue()">
+                                <label class="form-check-label" for="flexCheck">
+                                    Fasilitas 1
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckC"
+                                    onchange="sendCheckboxValue()">
+                                <label class="form-check-label" for="flexCheck">
+                                    Fasilitas 2
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckC"
+                                    onchange="sendCheckboxValue()">
+                                <label class="form-check-label" for="flexCheck">
+                                    Fasilitas 3
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckC"
+                                    onchange="sendCheckboxValue()">
+                                <label class="form-check-label" for="flexCheck">
+                                    Fasilitas 4
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckC"
+                                    onchange="sendCheckboxValue()">
+                                <label class="form-check-label" for="flexCheck">
+                                    Fasilitas 5
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Informasi Umum and Informasi Fasilitas sections remain the same -->                        
+                        <div style="border: 5px solid #0d1a65; padding: 20px; margin-bottom: 20px; border-radius: 5px;">
+                            <h2 class="text-center">Informasi Tipe Kamar {no}</h2>
+                            <div id="room-type-container">
+
+                                <!-- Initial room type instance -->
+                                <div class="room-type-instance">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="form_room_name">Nama Kamar</label>
+                                                <input id="form_room_name" type="text" name="room_name"
+                                                    class="form-control" style="width:100%"
+                                                    placeholder="Nama Kamar" required="required"
+                                                    data-error="Bagian ini wajib diisi.">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="form_room_type">Tipe Kamar</label>
+                                                <input id="form_room_type" type="text" name="room_type"
+                                                    class="form-control" style="width:100%"
+                                                    placeholder="Tipe Kamar" required="required"
+                                                    data-error="Bagian ini wajib diisi.">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="form_room_price">Harga per Malam</label>
+                                                <input id="form_room_price" type="number" name="room_price"
+                                                    class="form-control" style="width:100%"
+                                                    placeholder="Harga per Malam" required="required"
+                                                    data-error="Bagian ini wajib diisi.">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="form_room_description">Deskripsi Kamar</label>
+                                                <textarea id="form_room_description" name="room_description"
+                                                    class="form-control" style="width:100%"
+                                                    placeholder="Deskripsi Kamar" required="required"
+                                                    data-error="Bagian ini wajib diisi."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                        <label class="form-label" for="roomImage">Upload Gambar Kamar</label>
+                        <input type="file" class="form-control" id="roomImage" name="room_image"
+                            accept="image/*" />
+
+                        <!-- Add and remove buttons -->
+                        <div style="padding-top:20px;text-align: center;">
+                            <button id="add-room-type" class="btn btn-primary" style="padding: 10px 20px; border-radius: 5px;">Tambah Tipe
+                                Kamar</button>
+                            <button id="remove-room-type" class="btn btn-danger" style="background-color: #e74c3c; border-color: #e74c3c; padding: 11px 20px; border-radius: 5px; color: white;">Hapus Tipe
+                                Kamar</button>
+                        </div>
+                    </div>
+
+
+                        <div style="padding-top:20px;text-align: center;">
+                            <button id="save-changes" type="submit" class="btn btn-primary">Simpan
+                                Perubahan</button>
+                        </div>
+
+                    </form>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
